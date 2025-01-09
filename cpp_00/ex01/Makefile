@@ -6,17 +6,18 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/09 14:33:26 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/01/09 18:11:48 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = megaphone.cpp
+SRCS = Contact.cpp \
+		Phonebook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

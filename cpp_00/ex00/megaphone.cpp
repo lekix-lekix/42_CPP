@@ -6,22 +6,30 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:09:31 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/12/13 18:52:36 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:31:00 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
 #include <string>
-using namespace std;
 
 int main(int argc, char **argv)
 {
+    if (argc == 1)
+    {
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+        return (0);
+    }
     for (int i = 1; i < argc; i++)
     {
-        string str = argv[i];
-        string::iterator it;
-        for(it = str.begin(); it != str.end(); it++)
-            std::cout << toupper((char)*it);
+        std::string str = argv[i];
+        int str_len = str.length();
+        for (int i = 0; i < str_len; i++)
+        {
+            char c = toupper(str[i]);
+            std::cout << c;
+        }
+        std::cout << ' ';
     }
+    std::cout << std::endl;
 }
