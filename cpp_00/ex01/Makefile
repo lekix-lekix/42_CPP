@@ -6,7 +6,7 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/09 18:11:48 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/01/10 16:26:53 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ CXX = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 SRCS = Contact.cpp \
-		Phonebook.cpp
+		Phonebook.cpp \
+		utils.cpp \
+		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
