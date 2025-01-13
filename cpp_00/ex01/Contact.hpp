@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:39:33 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/10 17:45:12 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:57:14 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ public:
     
     int setFirstName(std::string first_name);
     int setLastName(std::string last_name);
-    void setNickName(std::string nickname);
-    void setDarkestSecret(std::string darkest_secret);
+    int setNickName(std::string nickname);
+    int setDarkestSecret(std::string darkest_secret);
     int setPhoneNumber(std::string phone_number);
 
 private:

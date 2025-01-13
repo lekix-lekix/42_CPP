@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:09:05 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/10 14:35:33 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:47:35 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,24 @@ bool contains_only_numbers(std::string str)
             return false;
     }
     return true;
+}
+
+int check_field_length(std::string str)
+{
+    if (str.length() == 0)
+    {
+        std::cout << "No empty field por favor!" << std::endl;
+        return -1;
+    }
+    return (0);
+}
+
+std::string resize_str(std::string str)
+{    
+    if (str.length() > 10)
+    {
+        str.resize(9);
+        str.push_back('.');
+    }
+    return str;
 }

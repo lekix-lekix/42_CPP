@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:38:14 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/10 17:51:46 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:57:37 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ Contact::~Contact(void)
 
 int Contact::setFirstName(std::string first_name)
 {
+    if (check_field_length(first_name) == -1)
+        return -1;
     if (contains_number(first_name))
     {
         std::cout << "First and last names can not contain any number !" << std::endl;
@@ -39,6 +41,8 @@ int Contact::setFirstName(std::string first_name)
 
 int Contact::setLastName(std::string last_name)
 {
+    if (check_field_length(last_name) == -1)
+        return -1;
     if (contains_number(last_name))
     {
         std::cout << "First and last names can not contain any number!" << std::endl;
@@ -51,18 +55,26 @@ int Contact::setLastName(std::string last_name)
     }
 }
 
-void Contact::setNickName(std::string nickname)
+int Contact::setNickName(std::string nickname)
 {
+    if (check_field_length(nickname) == -1)
+        return -1;
     this->_nickname = nickname;
+    return 0;
 }
 
-void Contact::setDarkestSecret(std::string darkest_secret)
+int Contact::setDarkestSecret(std::string darkest_secret)
 {
+    if (check_field_length(darkest_secret) == -1)
+        return -1;
     this->_darkest_secret = darkest_secret;
+    return 0;
 }
 
 int Contact::setPhoneNumber(std::string phone_number)
 {
+    if (check_field_length(phone_number) == -1)
+        return -1;
     if (!contains_only_numbers(phone_number))
     {
         std::cout << "Phone numbers must strictly contain digits!" << std::endl;
