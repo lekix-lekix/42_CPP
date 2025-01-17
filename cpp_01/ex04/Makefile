@@ -6,20 +6,17 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/16 13:58:37 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/01/17 15:31:23 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = unnecessary_violence
+NAME = my_sed
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = Weapon.cpp \
-		HumanA.cpp \
-		HumanB.cpp \
-		main.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -38,7 +35,8 @@ clean:
 	rm -rf ./*.o
 
 fclean:	clean
-	rm $(NAME)
+	rm -f $(NAME)
+	rm -f *.replace
 
 re: fclean
 	make all

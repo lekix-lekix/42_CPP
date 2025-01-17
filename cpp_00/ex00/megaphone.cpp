@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 17:09:31 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/09 14:31:00 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:09:42 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int main(int argc, char **argv)
             char c = toupper(str[i]);
             std::cout << c;
         }
-        std::cout << ' ';
+        if (i < argc - 1)
+            std::cout << ' ';
     }
     std::cout << std::endl;
 }

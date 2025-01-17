@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 17:33:33 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/16 14:16:23 by kipouliq         ###   ########.fr       */
+/*   Created: 2025/01/16 13:41:16 by kipouliq          #+#    #+#             */
+/*   Updated: 2025/01/16 14:25:10 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 #include "Weapon.hpp"
+#include <iostream>
 
-Weapon::Weapon(std::string type) : _type(type)
+class HumanB
 {
-    std::cout << "Weapon " << type << " created!" << std::endl;
-}
+private:
+    std::string _name;
+    Weapon *_weapon_ptr;
 
-Weapon::~Weapon(void)
-{
-    std::cout << "Weapon " << this->getType() << " destroyed!" << std::endl;
-}
+public:
+    HumanB(std::string name);
+    ~HumanB(void);
+    void attack(void);
+    void setWeapon(Weapon &weapon);
+};
 
-std::string const &Weapon::getType(void)
-{
-    const std::string &type_ref = this->_type;
-    return type_ref;
-}
-
-void Weapon::setType(std::string new_type)
-{
-    this->_type = new_type;
-}
+#endif
