@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:02:39 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/20 15:41:49 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/20 16:04:10 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ typedef struct s_func
     Harl_func   func_ptr;
 } t_func;
 
-
+enum func_code {
+    debug,
+    info,
+    warning,
+    error   
+};
 
 #endif
