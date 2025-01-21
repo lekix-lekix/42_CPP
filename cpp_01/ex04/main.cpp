@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix le boss                              +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 17:47:43 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/17 17:47:47 by kipouliq         ###   ########.fr       */
+/*   Created: 2025/01/21 16:06:06 by kipouliq          #+#    #+#             */
+/*   Updated: 2025/01/21 16:06:10 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include <iostream>
 #include <fstream>

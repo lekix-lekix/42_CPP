@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:33:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/20 15:42:37 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/21 16:35:14 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void Harl::info(void)
 
 void Harl::warning(void)
 {
-    std::cout << "Info mode activated !" << std::endl;
+    std::cout << "Warning mode activated !" << std::endl;
 }
 
 void Harl::error(void)
@@ -59,5 +59,5 @@ void Harl::complain(std::string level)
             return;
         }
     }
-    std::cout << "No mode found !" << std::endl;
+    std::cout << "Mode not found !" << std::endl;
 }

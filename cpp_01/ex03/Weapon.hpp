@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:33:35 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/16 13:35:50 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:23:23 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ private:
 public:
     Weapon(std::string type);
     ~Weapon(void);
-    std::string const   &getType(void);
-    void                setType(std::string new_type);
+    std::string const &getType(void);
+    void setType(std::string new_type);
 };
 
 #endif

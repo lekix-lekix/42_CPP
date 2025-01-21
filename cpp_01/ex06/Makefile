@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
+#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/20 15:40:09 by lekix            ###   ########.fr        #
+#    Updated: 2025/01/21 16:36:17 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harl
+NAME = harlFilter
 
 CXX = c++
 
