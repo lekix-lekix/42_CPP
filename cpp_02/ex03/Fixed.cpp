@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:20 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/24 17:56:09 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:49:05 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ Fixed::~Fixed(void)
 
 Fixed::Fixed(int const int_value)
 {
-    // this->_fixed = int_value << this->_bits;
     this->setRawBits(int_value);
-    std::cout << "Int constructor called" << std::endl;
+    std::cout << "Fixed int constructor called" << std::endl;
 }
 
 Fixed::Fixed(float const float_value)
 {
-    std::cout << "Float constructor called" << std::endl;
+    std::cout << "Fixed float constructor called" << std::endl;
     this->_fixed = roundf(float_value * (float)(1 << this->_bits));
 }
 
@@ -64,7 +63,7 @@ int Fixed::toInt(void) const
 
 Fixed &Fixed::operator=(Fixed const &rhs)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    std::cout << "Fixed copy assignment operator called" << std::endl;
     this->_fixed = rhs.getRawBits();
     return *this;
 }
@@ -192,7 +191,6 @@ bool Fixed::operator<=(Fixed const &rhs)
 
 std::ostream &operator<<(std::ostream &o, Fixed &rhs)
 {
-    // std::cout << "TO FLOAT" << std::endl;
     o << rhs.toFloat();
     return o;
 }

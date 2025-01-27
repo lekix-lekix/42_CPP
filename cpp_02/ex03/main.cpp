@@ -3,81 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:11:16 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/23 16:40:58 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:16:46 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
+#include "Point.hpp"
 #include <iostream>
-int main(void)
+
+int main(int argc, char **argv)
 {
-    // Fixed a(20);
-    // Fixed b(20.10f);
-    // Fixed c(Fixed(5.05f) * Fixed(2));
+    // Point a;
+    // Point b(2.546f, 3.432f);
+    // Point c = b;
+    
+    // std::cout << "a : ";
+    // a.printRawValues();
+    // std::cout << "b : ";
+    // b.printRawValues();
+    // std::cout << "c : ";
+    // c.printRawValues();
 
-    // std::string true_str = "true";
-    // std::string false_str = "false";
-
-    // std::cout << "a = " << a << std::endl;
-    // std::cout << "b = " << b << std::endl;
-    // std::cout << "a + b = " << a + b << std::endl;
-    // std::cout << "c = " << c << std::endl;
-
-    // if (a < b)
-    //     std::cout << "< : " << true_str << std::endl;
-    // else
-    //     std::cout << "< : " << false_str << std::endl;
-
-    // if (a > b)
-    //     std::cout << "> : " << true_str << std::endl;
-    // else
-    //     std::cout << "> : " << false_str << std::endl;
-
-    // if (a <= b)
-    //     std::cout << "<= : " << true_str << std::endl;
-    // else
-    //     std::cout << "<= : " << false_str << std::endl;
-
-    // if (a >= b)
-    //     std::cout << ">= : " << true_str << std::endl;
-    // else
-    //     std::cout << ">= : " << false_str << std::endl;
-
-    // if (a == b)
-    //     std::cout << "== : " << true_str << std::endl;
-    // else
-    //     std::cout << "== : " << false_str << std::endl;
-
-    // if (a != b)
-    //     std::cout << "!= : " << true_str << std::endl;
-    // else
-    //     std::cout << "!= : " << false_str << std::endl;
-
-    // Fixed a(0.0f);
-
-    // std::cout << ++a << std::endl;
-    // std::cout << a << std::endl;
-    // std::cout << a++ << std::endl;
-    // std::cout << a << std::endl;
-    // std::cout << --a << std::endl;
-    // std::cout << a << std::endl;
-    // std::cout << a-- << std::endl;
-    // std::cout << a << std::endl;
-
-    Fixed a;
-    Fixed const b(Fixed(5.05f) * Fixed(2));
-    std::cout << a << std::endl;
-    std::cout << ++a << std::endl;
-    std::cout << a << std::endl;
-    std::cout << a++ << std::endl;
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << Fixed::max(a, b) << std::endl;
-    std::cout << Fixed::min(a, b) << std::endl;
-    std::cout << a / 0 << std::endl;
+    (void) argc;
+    Point a(1, 1);
+    Point b(5, 1);
+    Point c(3, 4);
+    Point in(atoi(argv[1]), atoi(argv[2]));
+    
+    bool is_in = bsp(a, b, c, in);
+    if (is_in)
+        std::cout << "It's in !" << std::endl;
+    else
+        std::cout << "It's out !" << std::endl;
     return 0;
 }

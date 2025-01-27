@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:29 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/24 15:45:27 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:47:12 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ public:
     Fixed(float const float_value);
 
     Fixed &operator=(Fixed const &rhs);
-    
+
+    bool operator<(Fixed const &rhs);
+    bool operator>(Fixed const &rhs);
+    bool operator==(Fixed const &rhs);
+    bool operator!=(Fixed const &rhs);
+    bool operator>=(Fixed const &rhs);
+    bool operator<=(Fixed const &rhs);
+
     Fixed operator+(Fixed const &rhs);
     Fixed operator-(Fixed const &rhs);
     Fixed operator*(Fixed const &rhs);
@@ -40,13 +47,6 @@ public:
     Fixed operator++(int);
     Fixed &operator--(void);
     Fixed operator--(int);
-
-    bool operator<(Fixed const &rhs);
-    bool operator>(Fixed const &rhs);
-    bool operator==(Fixed const &rhs);
-    bool operator!=(Fixed const &rhs);
-    bool operator>=(Fixed const &rhs);
-    bool operator<=(Fixed const &rhs);
 
     int getRawBits(void) const;
     void setRawBits(int const raw);

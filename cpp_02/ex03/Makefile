@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
+#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/24 18:21:16 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/01/27 15:15:42 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = bsp
 
 CXX = c++
 
@@ -18,6 +18,7 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 SRCS = Fixed.cpp \
 		Point.cpp \
+		bsp.cpp \
 		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
