@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:42:05 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/27 13:13:05 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/27 19:04:09 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ Point::~Point(void)
     std::cout << "Point destructor called" << std::endl;
 }
 
-float Point::getXFloat(void) const
+Fixed Point::getXFixed(void) const
 {
-    return this->_x.toFloat();
+    return this->_x;
 }
 
-float Point::getYFloat(void) const
+Fixed Point::getYFixed(void) const
 {
-    return this->_y.toFloat();
+    return this->_y;
 }
 
 void Point::printRawValues(void)
