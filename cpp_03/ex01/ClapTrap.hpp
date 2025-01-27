@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:21:50 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/27 18:48:40 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/27 20:20:04 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string _name;
         int _hit_pts;
         int _nrg_pts;

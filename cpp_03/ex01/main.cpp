@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:17:04 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/27 19:59:35 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/27 20:22:50 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int main ()
 {
     ScavTrap first("Georges");
+    ScavTrap second = first;
     // ClapTrap second("Kim");
     // ClapTrap third = first;
 
