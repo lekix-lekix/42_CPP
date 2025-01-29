@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:28:42 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/29 18:36:12 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/27 18:59:21 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hit_pts(10), _nrg_pts(10), 
 ClapTrap::ClapTrap(ClapTrap &rhs)
 {
     *this = rhs;
-    std::cout << "ClapTrap Copy constructor called. He's named " << this->_name << std::endl;
+    std::cout << "Copy constructor called. He's named " << this->_name << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)

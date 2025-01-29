@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:43:24 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/29 18:38:01 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/29 18:39:03 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ class ScavTrap : public ClapTrap
         ScavTrap(ScavTrap &rhs);
         ~ScavTrap(void);
         ScavTrap &operator=(ScavTrap const &rhs);
-        
-        void attack(std::string const &target);
         void guardGate(void);
 };
 
