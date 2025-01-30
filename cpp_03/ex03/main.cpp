@@ -6,22 +6,22 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:17:04 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 16:53:24 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:21:23 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main ()
 {
-    FragTrap first("Georges");
-    FragTrap second = first;
-    FragTrap third;
+    DiamondTrap first;
+    DiamondTrap second("Alberto");
 
-    first.attack(second.getName());
-    second.takeDamage(first.getATK());
-    std::cout << second.getName() << " HP = " << second.getHP() << std::endl;
-    second.beRepaired(10);
-    std::cout << second.getName() << " HP = " << second.getHP() << std::endl;
-    second.highFivesGuys();
+    std::cout << first.getATK() << std::endl;
+    std::cout << first.getHP() << std::endl;
+    first.attack("someone");
+    second.attack("someone else");
+    second.attack("someone else else");
+    first.whoAmI();
+    second.whoAmI();
 }

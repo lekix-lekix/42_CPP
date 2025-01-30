@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:28:42 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/27 18:59:21 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/30 17:15:36 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit_pts(10), _nrg_pts(10), _atk_dmg(0)
+ClapTrap::ClapTrap(void) : _hit_pts(10), _nrg_pts(10), _atk_dmg(0)
 {
-    std::cout << "ClapTrap constructor called. He's named " << this->_name << std::endl;
+    std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &rhs)
 {
     *this = rhs;
-    std::cout << "Copy constructor called. He's named " << this->_name << std::endl;
+    std::cout << "ClapTrap Copy constructor called. He's named " << this->_name << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -29,12 +29,17 @@ ClapTrap::~ClapTrap(void)
 }
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &rhs)
-{   
+{
     this->_name = rhs._name;
     this->_hit_pts = rhs._hit_pts;
     this->_nrg_pts = rhs._nrg_pts;
     this->_atk_dmg = rhs._atk_dmg;
     return *this;
+}
+
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit_pts(10), _nrg_pts(10), _atk_dmg(0)
+{
+    std::cout << "ClapTrap constructor called. He's named " << this->_name << std::endl;
 }
 
 std::string ClapTrap::getName(void)
@@ -75,7 +80,7 @@ bool ClapTrap::canDo(void) const
 void ClapTrap::attack(const std::string &target)
 {
     if (!this->canDo())
-        return ;
+        return;
     std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_atk_dmg << " points of damage!" << std::endl;
     this->_nrg_pts -= 1;
 }
@@ -85,17 +90,17 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (!this->_hit_pts)
     {
         std::cout << "ClapTrap " << this->_name << " don't have any HP to lose.. but his feelings are hurt.";
-        return ;
+        return;
     }
-    std::cout << "ClapTrap " << this->_name << " loses " << amount <<  " HP!" << std::endl;
+    std::cout << "ClapTrap " << this->_name << " loses " << amount << " HP!" << std::endl;
     this->_hit_pts -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
     if (!this->canDo())
-        return ;
-    std::cout << "ClapTrap " << this->_name << " got back " << amount <<  " HP!" << std::endl;
+        return;
+    std::cout << "ClapTrap " << this->_name << " got back " << amount << " HP!" << std::endl;
     this->_hit_pts += amount;
     this->_nrg_pts -= 1;
 }

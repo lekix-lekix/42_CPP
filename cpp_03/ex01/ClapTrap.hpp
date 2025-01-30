@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:21:50 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/27 20:20:04 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:46:41 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ class ClapTrap
         bool canDo(void) const;
         
     public:
-        ClapTrap(std::string name);
+        ClapTrap(void);
         ClapTrap(ClapTrap &rhs);
         ~ClapTrap(void);
         ClapTrap &operator=(ClapTrap const &rhs);
+        
+        ClapTrap(std::string name);
         
         void attack(const std::string &target);
         void takeDamage(unsigned int amount);

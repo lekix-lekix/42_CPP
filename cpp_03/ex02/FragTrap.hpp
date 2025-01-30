@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FrapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:14:13 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/29 17:29:31 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:51:42 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 class FragTrap : public ClapTrap
 {
 public:
-    FragTrap(std::string name);
+    FragTrap(void);
     FragTrap(FragTrap &rhs);
     ~FragTrap(void);
     FragTrap &operator=(FragTrap const &rhs);
 
+    FragTrap(std::string name);
+    
     void highFivesGuys(void);
 };
 

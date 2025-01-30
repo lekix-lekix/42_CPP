@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:21:50 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 15:42:38 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:14:03 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string _name;
         int _hit_pts;
         int _nrg_pts;

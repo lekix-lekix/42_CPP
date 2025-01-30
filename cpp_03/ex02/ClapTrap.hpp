@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:21:50 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/29 17:18:27 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:53:01 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,29 @@
 
 class ClapTrap
 {
-protected:
-    std::string _name;
-    int _hit_pts;
-    int _nrg_pts;
-    int _atk_dmg;
-    bool canDo(void) const;
+    protected:
+        std::string _name;
+        int _hit_pts;
+        int _nrg_pts;
+        int _atk_dmg;
+        bool canDo(void) const;
+        
+    public:
+        ClapTrap(void);
+        ClapTrap(ClapTrap &rhs);
+        ~ClapTrap(void);
+        ClapTrap &operator=(ClapTrap const &rhs);
+        
+        ClapTrap(std::string name);
+        
+        void attack(const std::string &target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
 
-public:
-    ClapTrap(std::string name);
-    ClapTrap(ClapTrap &rhs);
-    ~ClapTrap(void);
-    ClapTrap &operator=(ClapTrap const &rhs);
-
-    void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-
-    std::string getName(void);
-    int getHP(void);
-    int getNRG(void);
-    int getATK(void);
+        std::string getName(void);
+        int getHP(void);
+        int getNRG(void);
+        int getATK(void);
 };
 
 #endif

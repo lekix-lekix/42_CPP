@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 18:17:04 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 16:53:24 by kipouliq         ###   ########.fr       */
+/*   Created: 2025/01/29 17:14:13 by lekix             #+#    #+#             */
+/*   Updated: 2025/01/30 17:04:05 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
+#include "ClapTrap.hpp"
+#include <iostream>
 
-int main ()
+class FragTrap : virtual public ClapTrap
 {
-    FragTrap first("Georges");
-    FragTrap second = first;
-    FragTrap third;
+public:
+    FragTrap(void);
+    FragTrap(FragTrap &rhs);
+    ~FragTrap(void);
+    FragTrap &operator=(FragTrap const &rhs);
 
-    first.attack(second.getName());
-    second.takeDamage(first.getATK());
-    std::cout << second.getName() << " HP = " << second.getHP() << std::endl;
-    second.beRepaired(10);
-    std::cout << second.getName() << " HP = " << second.getHP() << std::endl;
-    second.highFivesGuys();
-}
+    FragTrap(std::string name);
+    
+    void highFivesGuys(void);
+};
+
+#endif
