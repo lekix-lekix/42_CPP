@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:29 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/22 14:34:19 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/31 13:17:08 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@
 class Fixed
 {
 private:
-    int _value;
+    int _fixed;
     static const int _bits = 8;
 
 public:
     Fixed(void);
     Fixed(Fixed const &src);
     ~Fixed(void);
-
     Fixed &operator=(Fixed const &src);
 
     int getRawBits(void) const;
     void setRawBits(int const raw);
-
 };
 
 #endif

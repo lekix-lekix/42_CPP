@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:29:29 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/22 19:19:04 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/31 13:44:13 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ public:
     Fixed(void);
     Fixed(Fixed const &src);
     ~Fixed(void);
-
     Fixed &operator=(Fixed const &src);
 
     Fixed(int const int_value);

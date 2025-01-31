@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:41:47 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/27 19:03:45 by lekix            ###   ########.fr       */
+/*   Updated: 2025/01/31 14:20:42 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ public:
     Fixed getYFixed(void) const;
     void printRawValues(void);
     
-    bool bsp(Point const a, Point const b, Point const c, Point const point);
-
     Point &operator=(Point const &rhs);
 };
 

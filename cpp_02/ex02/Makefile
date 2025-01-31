@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
+#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/01/27 15:25:08 by lekix            ###   ########.fr        #
+#    Updated: 2025/01/31 14:06:56 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ CXX = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 SRCS = Fixed.cpp \
-		Point.cpp \
 		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
