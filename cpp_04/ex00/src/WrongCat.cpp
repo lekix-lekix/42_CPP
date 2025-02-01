@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 18:52:06 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 15:25:23 by lekix            ###   ########.fr       */
+/*   Created: 2025/02/01 15:32:33 by lekix             #+#    #+#             */
+/*   Updated: 2025/02/01 15:44:20 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/WrongCat.hpp"
 
-Cat::Cat(void) : Animal()
+WrongCat::WrongCat(void) : WrongAnimal()
 {
-    this->setType("Cat");
-    std::cout << "Cat default constructor called" << std::endl;
+    std::cout << "Wrong Cat default constructor called" << std::endl;
 }
 
-Cat::Cat(Cat const &rhs) : Animal(rhs)
+WrongCat::WrongCat(WrongCat &rhs) : WrongAnimal(rhs)
 {
     *this = rhs;    
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat()
 {
-    std::cout << "Cat destructor called" << std::endl;
+    std::cout << "Wrong Cat default destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(Cat const &rhs)
+WrongCat &WrongCat::operator=(WrongCat &rhs)
 {
     this->setType(rhs.getType());
     return *this;
 }
 
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-    std::cout << "Meow meow fellas!" << std::endl;
+    std::cout << "WoofMeowMoo! Huh weird" << std::endl;
 }

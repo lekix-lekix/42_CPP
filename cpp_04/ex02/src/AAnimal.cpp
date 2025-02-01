@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 18:26:15 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 15:25:06 by lekix            ###   ########.fr       */
+/*   Created: 2025/01/31 18:11:50 by kipouliq          #+#    #+#             */
+/*   Updated: 2025/02/01 18:50:28 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Dog.hpp"
+#include "../includes/AAnimal.hpp"
 
-Dog::Dog(void) : Animal()
+AAnimal::AAnimal(void)
 {
-    this->setType("Dog");
-    std::cout << "Dog default constructor called" << std::endl;
+    std::cout << "AAnimal default constructor called" << std::endl;
 }
 
-Dog::Dog(Dog const &rhs) : Animal(rhs)
+AAnimal::AAnimal(AAnimal const &rhs)
 {
     *this = rhs;
 }
 
-Dog::~Dog(void)
+AAnimal::~AAnimal(void)
 {
-    std::cout << "Dog default constructor called" << std::endl;
+    std::cout << "AAnimal destructor called" << std::endl;
 }
 
-Dog &Dog::operator=(Dog const &rhs)
+AAnimal &AAnimal::operator=(AAnimal const &rhs)
 {
-    this->setType(rhs.getType());
+    this->_type = rhs._type;
     return *this;
 }
 
-void Dog::makeSound(void) const
+void AAnimal::setType(std::string const type)
 {
-    std::cout << "Woof woof !" << std::endl;
+    this->_type = type;
+}
+
+std::string AAnimal::getType(void) const
+{   
+    return this->_type;
 }

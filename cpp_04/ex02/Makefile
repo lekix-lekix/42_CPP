@@ -6,7 +6,7 @@
 #    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/02/01 15:40:25 by lekix            ###   ########.fr        #
+#    Updated: 2025/02/01 18:51:34 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,10 @@ CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/Animal.cpp \
+SRCS = ./src/AAnimal.cpp \
+		./src/Brain.cpp \
 		./src/Dog.cpp \
 		./src/Cat.cpp \
-		./src/WrongAnimal.cpp \
-		./src/WrongCat.cpp \
 		./src/main.cpp
 
 OBJS = $(SRCS:.cpp=.o)

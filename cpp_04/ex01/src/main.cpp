@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 18:52:06 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 15:25:23 by lekix            ###   ########.fr       */
+/*   Created: 2025/01/31 18:17:58 by kipouliq          #+#    #+#             */
+/*   Updated: 2025/02/01 18:22:38 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/Animal.hpp"
+#include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
 
-Cat::Cat(void) : Animal()
+int main()
 {
-    this->setType("Cat");
-    std::cout << "Cat default constructor called" << std::endl;
-}
+    Animal *animal_tab[20];
 
-Cat::Cat(Cat const &rhs) : Animal(rhs)
-{
-    *this = rhs;    
-}
+    for (int i = 0; i < 20; i++)
+    {
+        if (i < 10)
+            animal_tab[i] = new Dog();
+        else
+            animal_tab[i] = new Cat();
+    }
 
-Cat::~Cat(void)
-{
-    std::cout << "Cat destructor called" << std::endl;
-}
+    for (int i = 0; i < 20; i++)
+        delete animal_tab[i];
 
-Cat &Cat::operator=(Cat const &rhs)
-{
-    this->setType(rhs.getType());
-    return *this;
-}
-
-void Cat::makeSound(void) const
-{
-    std::cout << "Meow meow fellas!" << std::endl;
+    const Animal *j = new Dog();
+    const Animal *i = new Cat();
+    delete j; // should not create a leak
+    delete i;
 }

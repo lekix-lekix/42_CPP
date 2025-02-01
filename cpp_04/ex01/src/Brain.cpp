@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 18:52:06 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 15:25:23 by lekix            ###   ########.fr       */
+/*   Created: 2025/02/01 17:09:03 by lekix             #+#    #+#             */
+/*   Updated: 2025/02/01 17:16:56 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/Brain.hpp"
 
-Cat::Cat(void) : Animal()
+Brain::Brain(void)
 {
-    this->setType("Cat");
-    std::cout << "Cat default constructor called" << std::endl;
+    std::cout << "Brain default constructor called" << std::endl;
 }
 
-Cat::Cat(Cat const &rhs) : Animal(rhs)
+Brain::Brain(Brain const &rhs)
 {
-    *this = rhs;    
+    *this = rhs;
 }
 
-Cat::~Cat(void)
+Brain::~Brain(void)
 {
-    std::cout << "Cat destructor called" << std::endl;
+    std::cout << "Brain default destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(Cat const &rhs)
+Brain &Brain::operator=(Brain const &rhs)
 {
-    this->setType(rhs.getType());
+    for (int i = 0; i < 100; i++)
+        this->_ideas[i] = rhs._ideas[i];
     return *this;
-}
-
-void Cat::makeSound(void) const
-{
-    std::cout << "Meow meow fellas!" << std::endl;
 }
