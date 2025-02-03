@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:46:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/02 19:36:58 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/03 17:36:39 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,33 @@
 
 int main ()
 {
-    AMateria *first = new Ice();
-    AMateria *second = new Cure() ;
+    Character elton("elton");
+    Character john;
+    Character elton2(elton);
+    
+    std::cout << elton.getName() << std::endl;
+    std::cout << john.getName() << std::endl;
+    std::cout << elton2.getName() << std::endl;
 
-    AMateria *m = first->clone(); 
-    AMateria *n = second->clone(); 
+    ICharacter *new_elton = new Character("new elton");
+    ICharacter *new_john = new Character("new john");
 
-    std::cout << first->getType() << std::endl;
-    std::cout << second->getType() << std::endl;
-    std::cout << m->getType() << std::endl;
-    std::cout << n->getType() << std::endl;
+    AMateria *ice_ptr = new Ice();
+    std::cout << ice_ptr << std::endl;
+    AMateria *cure_ptr = new Cure();
 
-    Character champ;
-    Character champ2("Elton");
-    champ2.equip(m);
-    champ2.equip(m);
-    champ2.equip(m);
-    champ2.equip(m);
-    champ2.equip(n);
+    ice_ptr->use(*new_elton);
 
-    delete first;
-    delete second;
+    new_elton->equip(ice_ptr);
+    new_elton->equip(cure_ptr);
+    new_elton->use(0, *new_elton);
+    new_elton->use(1, *new_elton);
+    new_elton->unequip(0);
+    // new_elton->unequip(1);
+    std::cout << new_elton->getName() << std::endl;
+    std::cout << new_john->getName() << std::endl;    
+
+    // delete ice_ptr;
+    delete new_elton;
+    delete new_john;
 }

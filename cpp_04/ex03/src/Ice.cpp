@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:19:29 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/02 18:54:13 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/03 16:12:36 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ AMateria *Ice::clone(void) const
 
 void Ice::use(ICharacter &target)
 {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *";
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
