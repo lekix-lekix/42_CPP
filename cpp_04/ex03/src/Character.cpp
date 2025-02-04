@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:03:17 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/03 17:58:16 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:14:08 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Character::Character(void)
 {
-    this->floor_items = NULL;
+    this->_floor_items = NULL;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
     std::cout << "Character default constructor called" << std::endl;
@@ -22,7 +22,7 @@ Character::Character(void)
 
 Character::Character(Character const &rhs)
 {
-    this->floor_items = NULL;
+    this->_floor_items = NULL;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
     *this = rhs;
@@ -36,14 +36,11 @@ Character::~Character(void)
         if (this->_items[i])
             delete this->_items[i];
     }
-    if (this->floor_items)
+    if (this->_floor_items)
     {
-        for (int i = 0; this->floor_items[i]; i++)
-        {
-            std::cout << this->floor_items[i] << std::endl;
-            delete this->floor_items[i];
-        }
-        delete [] this->floor_items;
+        for (int i = 0; this->_floor_items[i]; i++)
+            delete this->_floor_items[i];
+        delete[] this->_floor_items;
     }
     std::cout << "Character destructor called" << std::endl;
 }
@@ -51,6 +48,7 @@ Character::~Character(void)
 Character &Character::operator=(Character const &rhs)
 {
     this->_name = rhs._name;
+    this->_floor_items = NULL;
     for (int i = 0; i < 4; i++)
     {
         if (this->_items[i])
@@ -60,13 +58,12 @@ Character &Character::operator=(Character const &rhs)
         else
             this->_items[i] = NULL;
     }
-    // add deep copy of floor items
     return *this;
 }
 
 Character::Character(std::string name)
 {
-    this->floor_items = NULL;
+    this->_floor_items = NULL;
     this->_name = name;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
@@ -82,6 +79,11 @@ void Character::equip(AMateria *m)
 {
     if (!m)
         return;
+    if (m->getEquipStatus())
+    {
+        std::cout << "Materia already equipped by someone else! Aborting.." << std::endl;
+        return ;
+    }
     for (int i = 0; i < 4; i++)
     {
         if (!this->_items[i] && m != this->_items[i])
@@ -100,21 +102,26 @@ void Character::floorMateria(AMateria *item)
 {
     static int size;
 
-    if (!this->floor_items)
+    if (!this->_floor_items)
     {
-        this->floor_items = new AMateria *[2];
-        this->floor_items[0] = item;
-        this->floor_items[1] = NULL;
+        this->_floor_items = new AMateria *[2];
+        this->_floor_items[0] = item;
+        this->_floor_items[1] = NULL;
         size = 2;
         return;
     }
+    for (int i = 0; this->_floor_items[i]; i++)
+    {
+        if (this->_floor_items[i] == item)
+            return;
+    }
     AMateria **new_floor_items = new AMateria *[size + 1];
-    for (int i = 0; this->floor_items[i]; i++)
-        new_floor_items[i] = this->floor_items[i];
+    for (int i = 0; this->_floor_items[i]; i++)
+        new_floor_items[i] = this->_floor_items[i];
     new_floor_items[size - 1] = item;
     new_floor_items[size] = NULL;
-    delete this->floor_items;
-    this->floor_items = new_floor_items;
+    delete [] this->_floor_items;
+    this->_floor_items = new_floor_items;
     size++;
 }
 

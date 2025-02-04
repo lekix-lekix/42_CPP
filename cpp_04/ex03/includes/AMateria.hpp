@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:39:28 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/02 19:23:51 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/04 18:03:15 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class AMateria
 {
     protected:
         std::string _type;
+        bool    _equipped;
 
     public:
         AMateria(void);
@@ -31,7 +32,8 @@ class AMateria
         AMateria(std::string const &type);
 
         std::string const &getType(void) const;
-
+        bool getEquipStatus(void) const;
+        
         virtual AMateria *clone() const = 0;
         virtual void use(ICharacter &target);
 };

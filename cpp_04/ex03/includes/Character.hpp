@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:03:36 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/03 17:12:21 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:17:28 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Character : public ICharacter
     private:
         std::string _name;
         AMateria *_items[4];
-        AMateria **floor_items;
+        AMateria **_floor_items;
 
     public:
         Character(void);
