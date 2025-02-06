@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:23:42 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/31 16:45:34 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:33:18 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,9 @@ DiamondTrap::~DiamondTrap(void)
 void DiamondTrap::whoAmI(void)
 {
     std::cout << "My parent name is " << ClapTrap::getName() << " and my name is " << this->_name << std::endl;
+}
+
+std::string const &DiamondTrap::getName(void) const
+{
+    return this->_name;
 }

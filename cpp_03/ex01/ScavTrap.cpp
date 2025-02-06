@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:45:58 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 17:16:38 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:54:33 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 void ScavTrap::attack(std::string const &target)
 {
     if (!this->canDo())
-        return ;
+        return;
     std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_atk_dmg << " points of damage!" << std::endl;
     this->_nrg_pts -= 1;
 }
 
 void ScavTrap::guardGate(void)
 {
+    if (!this->canDo())
+        return;
     std::cout << "Scavtrap " << this->_name << " now in Gate Keeper mode." << std::endl;
 }
-

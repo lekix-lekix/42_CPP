@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:28:42 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 17:15:14 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:03:29 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int ClapTrap::getHP(void)
 
 int ClapTrap::getNRG(void)
 {
-    return this->_atk_dmg;
+    return this->_nrg_pts;
 }
 
 int ClapTrap::getATK(void)

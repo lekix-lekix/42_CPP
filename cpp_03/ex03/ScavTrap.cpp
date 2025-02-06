@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:45:58 by lekix             #+#    #+#             */
-/*   Updated: 2025/01/30 17:26:02 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:16:08 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void ScavTrap::attack(std::string const &target)
 
 void ScavTrap::guardGate(void)
 {
+    if (!this->canDo())
+        return ;
     std::cout << "Scavtrap " << this->_name << " now in Gate Keeper mode." << std::endl;
 }
