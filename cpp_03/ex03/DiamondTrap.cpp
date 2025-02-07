@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:23:42 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/06 13:33:18 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:14:53 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), Frag
     this->_atk_dmg = 30;
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap &rhs)
+DiamondTrap::DiamondTrap(DiamondTrap &rhs) : ClapTrap(rhs), FragTrap(rhs), ScavTrap(rhs)
 {
     *this = rhs;
 }

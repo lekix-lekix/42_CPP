@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:17:58 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 18:52:28 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/02 19:41:01 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int main()
 
     const AAnimal *j = new Dog();
     const AAnimal *i = new Cat();
+
     delete j; // should not create a leak
     delete i;
 }
