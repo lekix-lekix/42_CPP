@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:03:17 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/04 18:14:08 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:21:35 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void Character::equip(AMateria *m)
     if (m->getEquipStatus())
     {
         std::cout << "Materia already equipped by someone else! Aborting.." << std::endl;
-        return ;
+        return;
     }
     for (int i = 0; i < 4; i++)
     {
@@ -96,12 +96,15 @@ void Character::equip(AMateria *m)
             std::cout << "Materia already in the inventory!" << std::endl;
     }
     std::cout << "No slot available! Please unequip." << std::endl;
+    delete m;
 }
 
 void Character::floorMateria(AMateria *item)
 {
     static int size;
 
+    if (!item)
+        return;
     if (!this->_floor_items)
     {
         this->_floor_items = new AMateria *[2];
@@ -120,13 +123,18 @@ void Character::floorMateria(AMateria *item)
         new_floor_items[i] = this->_floor_items[i];
     new_floor_items[size - 1] = item;
     new_floor_items[size] = NULL;
-    delete [] this->_floor_items;
+    delete[] this->_floor_items;
     this->_floor_items = new_floor_items;
     size++;
 }
 
 void Character::unequip(int idx)
 {
+    if (idx > 3 || idx < 0)
+    {
+        std::cout << "Incorrect index, must be between 0 and 3" << std::endl;
+        return;
+    }
     if (!this->_items[idx])
         std::cout << "Materia slot already empty!" << std::endl;
     else
@@ -139,6 +147,11 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter &target)
 {
+    if (idx > 3 || idx < 0)
+    {
+        std::cout << "Incorrect index, must be between 0 and 3" << std::endl;
+        return;
+    }
     if (this == &target)
     {
         std::cout << "A materia can not attack its owner ! Aborting.." << std::endl;

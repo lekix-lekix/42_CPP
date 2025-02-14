@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 17:36:18 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/05 19:40:17 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:18:10 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ MateriaSource::~MateriaSource(void)
 {
     for (int i = 0; i < 4; i++)
     {
-        std::cout << this->_stock[i] << std::endl;
         if (this->_stock[i])
             delete this->_stock[i];
     }
@@ -69,14 +68,16 @@ void MateriaSource::learnMateria(AMateria *m)
             return ;
         }
     }
+    delete m;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (this->_stock[i]->getType().compare(type) == 0)
+        if (this->_stock[i] && this->_stock[i]->getType().compare(type) == 0)
             return this->_stock[i]->clone();
     }
+    std::cout << "No materia of this type found !" << std::endl;
     return (0);
 }

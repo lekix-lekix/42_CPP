@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:46:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/05 18:18:13 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:27:24 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,73 +15,251 @@
 #include "../includes/Character.hpp"
 #include "../includes/MateriaSource.hpp"
 
+int ft_error( void ) {
+	
+	std::cout << "Dynamic allocation failure" << std::endl;
+	return (1);
+}
+
 int main()
 {
     // Character elton("elton");
-    // Character john;
-    // Character elton2(elton);
+    // Character new_elton = elton;
 
-    // std::cout << elton.getName() << std::endl;
-    // std::cout << john.getName() << std::endl;
-    // std::cout << elton2.getName() << std::endl;
+    // IMateriaSource *src = new MateriaSource();
+    // src->learnMateria(new Ice());
+    // src->learnMateria(new Cure());
+    // ICharacter *me = new Character("me");
+    // AMateria *tmp;
+    // tmp = src->createMateria("ice");
+    // me->equip(tmp);
+    // tmp = src->createMateria("cure");
+    // me->equip(tmp);
+    // ICharacter *bob = new Character("bob");
+    // me->use(0, *bob);
+    // me->use(1, *bob);
+    // delete bob;
+    // delete me;
+    // delete src;
+    // return 0;
 
-    // ICharacter *new_elton = new Character("new elton");
-    // ICharacter *new_john = new Character("new john");
+    std::string title = "\e[1;6;34m";
+    std::string reset = "\e[0m";
 
-    // AMateria *ice_ptr = new Ice();
-    // std::cout << ice_ptr << std::endl;
-    // AMateria *cure_ptr = new Cure();
+    /* SUBJECT MAIN */
+    std::cout << title << "╔═══════════════════════════════════════════════════════╗" << reset << std::endl;
+    std::cout << title << "║			SUBJECT MAIN			║" << reset << std::endl;
+    std::cout << title << "╚═══════════════════════════════════════════════════════╝" << reset << std::endl;
 
-    // // ICharacter *new_new_elton = new Character();
+    IMateriaSource *src = NULL;
+    ICharacter *me = NULL;
+    ICharacter *bob = NULL;
+    {
+        try
+        {
+            src = new MateriaSource();
+            if (!src)
+                return (ft_error());
 
-    // ice_ptr->use(*new_elton);
+            src->learnMateria(new Ice());
+            src->learnMateria(new Cure());
 
-    // new_elton->equip(ice_ptr);
-    // new_elton->equip(cure_ptr);
-    // new_elton->use(0, *new_elton);
-    // new_elton->use(1, *new_elton);
-    // // new_elton->unequip(0);
-    // // new_new_elton = new_elton;
-    // // new_new_elton->use(0, *new_elton);
+            me = new Character("me");
+            if (!me)
+                return (delete src, ft_error());
 
-    // // new_elton->equip(ice_ptr);
-    // // new_elton->unequip(0);
-    // // new_elton->equip(ice_ptr);
-    // // new_elton->unequip(0);
-    // // new_elton->equip(ice_ptr);
-    // // new_elton->unequip(0);
-    // // new_elton->equip(ice_ptr);
-    // // new_elton->unequip(0);
-    // // new_elton->equip(ice_ptr);
+            AMateria *tmp;
 
-    // // Character new_new_elton("new new elton");
-    // // new_new_elton.equip(ice_ptr);
-    // // new_new_elton.equip(cure_ptr);
-    // new_elton->unequip(0);
-    // new_elton->unequip(1);
+            tmp = src->createMateria("ice");
+            me->equip(tmp);
+            tmp = src->createMateria("cure");
+            me->equip(tmp);
 
-    // std::cout << new_elton->getName() << std::endl;
-    // std::cout << new_john->getName() << std::endl;
+            bob = new Character("bob");
+            if (!bob)
+                return (delete me, delete src, ft_error());
 
-    // // delete ice_ptr;
-    // delete new_elton;
-    // // delete new_new_elton;
-    // delete new_john;
+            me->use(0, *bob);
+            me->use(1, *bob);
 
-    IMateriaSource *src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    ICharacter *me = new Character("me");
-    AMateria *tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    ICharacter *bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src;
+            delete bob;
+            bob = NULL;
+            delete me;
+            me = NULL;
+            delete src;
+            src = NULL;
+        }
+        catch (int e)
+        {
+            delete bob;
+            delete me;
+            delete src;
+            ft_error();
+        }
+    }
+
+    /* MY MAIN */
+    std::cout << title << "╔═══════════════════════════════════════════════════════╗" << reset << std::endl;
+    std::cout << title << "║			   MY MAIN   			║" << reset << std::endl;
+    std::cout << title << "╚═══════════════════════════════════════════════════════╝" << reset << std::endl;
+
+    Character *kix = NULL;
+    Character *rmy = NULL;
+    IMateriaSource *empty = NULL;
+    {
+        try
+        {
+            src = new (std::nothrow) MateriaSource();
+            if (!src)
+                return (ft_error());
+
+            /* Check learnMateria + MateriaSource Inventory full*/
+            std::cout << title << "Check learnMateria + MateriaSource Inventory full" << reset << std::endl;
+
+            src->learnMateria(new Ice());
+            src->learnMateria(new Cure());
+            src->learnMateria(new Ice());
+            src->learnMateria(new Cure());
+            src->learnMateria(new Ice());
+            src->learnMateria(new Cure());
+
+            me = new Character("me");
+            if (!me)
+                return (delete src, ft_error());
+            AMateria *tmp;
+
+            tmp = src->createMateria("ice");
+            me->equip(tmp);
+            tmp = src->createMateria("cure");
+            me->equip(tmp);
+
+            bob = new Character("bob");
+            if (!bob)
+                return (delete me, delete src, ft_error());
+
+            /* Check use and Character Inventory not full */
+            std::cout << title << "Check use and Character Inventory not full" << reset << std::endl;
+            me->use(0, *bob);
+            me->use(1, *bob);
+            me->use(2, *bob);
+            me->use(3, *bob);
+
+            /* Check unequip in existing element, not existing element and wrong idx */
+            std::cout << title << "Check unequip in existing element, not existing element and wrong idx" << reset << std::endl;
+            // tmp = Character::getItem(0, (Character *)me);
+            me->unequip(0);
+            // Character::throwMateria(tmp);
+            // tmp = Character::getItem(0, (Character *)me);
+            me->unequip(0);
+            // Character::throwMateria(tmp);
+            // tmp = Character::getItem(-1, (Character *)me);
+            me->unequip(-1);
+            // Character::throwMateria(tmp);
+            // tmp = Character::getItem(4, (Character *)me);
+            me->unequip(4);
+            // Character::throwMateria(tmp);
+
+            /* Check if unequip element has been really unequip */
+            std::cout << title << "Check if unequip element has been really unequip" << reset << std::endl;
+            me->use(0, *bob);
+            tmp = src->createMateria("cure");
+            me->equip(tmp);
+            me->use(0, *bob);
+
+            kix = new Character("Kix");
+            if (!kix)
+                return (delete bob, delete me, delete src, ft_error());
+
+            /* Check equip + Character Inventory full*/
+            std::cout << title << "Check equip + Character Inventory full" << reset << std::endl;
+            for (int i = 0; i < 6; i++)
+            {
+                if (i % 2 == 0)
+                    tmp = src->createMateria("cure");
+                else
+                    tmp = src->createMateria("ice");
+                kix->equip(tmp);
+            }
+
+            /* Check use + wrong and valid index */
+            std::cout << title << "Check use + wrong and valid index" << reset << std::endl;
+            for (int i = -1; i < 6; i++)
+                kix->use(i, *me);
+
+            // tmp = Character::getItem(0, (Character *)me);
+            me->unequip(0);
+            // Character::throwMateria(tmp);
+
+            /* Check Character CopyConstructor  deep copy*/
+            std::cout << title << "Check Character CopyConstructor  deep copy" << reset << std::endl;
+            {
+                Character kix_cpy = Character(*kix);
+                std::cout << "kix_cpy : " << std::endl;
+                for (int i = -1; i < 6; i++)
+                    kix_cpy.use(i, *kix);
+            }
+            std::cout << std::endl
+                      << "kix_original : " << std::endl;
+            for (int i = -1; i < 6; i++)
+                kix->use(i, *kix);
+
+            rmy = new Character(*kix);
+            if (!rmy)
+                return (delete kix, delete bob, delete me, delete src, ft_error());
+            for (int i = -1; i < 6; i++)
+                rmy->use(i, *kix);
+
+            empty = new MateriaSource();
+            if (!empty)
+                return (delete rmy, delete kix, delete bob, delete me, delete src, ft_error());
+            /* Check unequip + wrong index */
+            std::cout << title << "Check unequip + wrong index" << reset << std::endl;
+            for (int i = -1; i < 6; i++)
+            {
+                // tmp = Character::getItem(i, (Character *)rmy);
+                rmy->unequip(i);
+                rmy->use(i, *kix);
+                // Character::throwMateria(tmp);
+            }
+
+            /* Check create materia on Empty MateriaSource + equip + use */
+            std::cout << title << "Check create materia on Empty MateriaSource" << reset << std::endl;
+            std::cout << "" << std::endl;
+            tmp = empty->createMateria("cure");
+            rmy->equip(tmp);
+            rmy->use(0, *kix);
+
+            /* Check learnMateria + create materia on Empty MateriaSource + equip + use */
+            std::cout << title << "Check learnMateria + create materia on Empty MateriaSource + equip + use" << reset << std::endl;
+            empty->learnMateria(new Cure());
+            tmp = empty->createMateria("cure");
+            rmy->equip(tmp);
+            rmy->use(0, *kix);
+
+            /* Check create wrong materia on MateriaSource + equip + use */
+            std::cout << title << "Check create wrong materia on Empty MateriaSource + equip + use" << reset << std::endl;
+            tmp = empty->createMateria("cuuure");
+            rmy->equip(tmp);
+            rmy->use(1, *kix);
+
+            delete empty;
+            delete rmy;
+            delete kix;
+            delete bob;
+            delete me;
+            delete src;
+            // delete tmp;
+        }
+        catch (int e)
+        {
+            delete empty;
+            delete rmy;
+            delete kix;
+            delete bob;
+            delete me;
+            delete src;
+            // ft_error();
+        }
+    }
     return 0;
 }
