@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:12:10 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/01 16:03:59 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 13:03:03 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal
         void setType(std::string type);
         std::string getType(void) const;
 
-        void virtual makeSound(void) const;
+        void makeSound(void) const;
 };
 
 #endif

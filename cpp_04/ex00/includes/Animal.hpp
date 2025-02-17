@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:08:42 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 16:03:38 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 12:51:54 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Animal
         Animal &operator=(Animal const &rhs);
 
         virtual void makeSound(void) const;
-        void    setType(std::string type);
-        std::string    getType(void) const;
+        void setType(std::string type);
+        std::string getType(void) const;
 };
 
 #endif

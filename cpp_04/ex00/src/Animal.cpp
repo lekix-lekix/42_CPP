@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:11:50 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 16:01:00 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 13:07:48 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Animal.hpp"
 
-Animal::Animal(void)
+Animal::Animal(void) : _type("Generic animal type")
 {
     std::cout << "Animal default constructor called" << std::endl;
 }

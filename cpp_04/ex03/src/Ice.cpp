@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:19:29 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/03 16:12:36 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:04:51 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Ice::Ice(void) : AMateria("ice")
 Ice::Ice(Ice const &rhs) : AMateria(rhs)
 {
     *this = rhs;
+    std::cout << "Ice copy constructor called" << std::endl;
 }
 
 Ice::~Ice(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:26:15 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/02/01 18:49:08 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/14 17:22:27 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ Dog::~Dog(void)
 
 Dog &Dog::operator=(Dog const &rhs)
 {
+    Brain *brain_cpy = new Brain();
+
+    *brain_cpy = *rhs._my_brain;
+    this->_my_brain = brain_cpy;
     this->setType(rhs.getType());
     return *this;
 }
