@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:59:04 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/10 15:52:50 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:53:25 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
     private:
         std::string const _name;
@@ -26,12 +26,12 @@ class Form
         int const         _exec_grade;
 
     public:
-        Form(void);
-        Form(Form const &rhs);
-        ~Form(void);
-        Form &operator=(Form const &rhs);
+        AForm(void);
+        AForm(AForm const &rhs);
+        ~AForm(void);
+        AForm &operator=(AForm const &rhs);
 
-        Form(std::string name, int sign_grade, int exec_grade);
+        AForm(std::string name, int sign_grade, int exec_grade);
 
         std::string const &getName(void) const;
         bool const &getSignedStatus(void) const;

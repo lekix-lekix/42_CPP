@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:59:02 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/10 15:53:11 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:55:00 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void Bureaucrat::decGrade(void)
     
 }
 
-void Bureaucrat::signForm(Form &to_sign)
+void Bureaucrat::signForm(AForm &to_sign)
 {
     try
     {
