@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 17:36:18 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/18 11:47:32 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:23:28 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void MateriaSource::learnMateria(AMateria *m)
             return ;
         }
     }
+    std::cout << "No slot available to learn a new Materia. Aborting.." << std::endl;
     delete m;
 }
 

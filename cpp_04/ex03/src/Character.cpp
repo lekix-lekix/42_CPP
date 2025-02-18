@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:03:17 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/18 11:47:57 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:29:00 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ Character::~Character(void)
         for (int i = 0; this->_floor_items[i]; i++)
             delete this->_floor_items[i];
         delete[] this->_floor_items;
+        this->_floor_items = NULL;
     }
     // std::cout << "Character destructor called" << std::endl;
 }
@@ -67,7 +68,7 @@ Character::Character(std::string name)
     this->_name = name;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
-    // std::cout << "Character string constructor called" << std::endl;
+    // std::cout << "Character string constructor called" << std::endl;         
 }
 
 std::string const &Character::getName() const
@@ -89,14 +90,14 @@ void Character::equip(AMateria *m)
         if (!this->_items[i] && m != this->_items[i])
         {
             this->_items[i] = m;
-            std::cout << m->getType() << " successfully equipped at slot " << i << std::endl;
+            std::cout << this->getName() << " successfully equipped Materia " << m->getType() << " at slot " << i << std::endl;
             return;
         }
         if (m == this->_items[i])
             std::cout << "Materia already in the inventory!" << std::endl;
     }
     std::cout << "No slot available! Please unequip." << std::endl;
-    delete m;
+    delete m;   
 }
 
 void Character::floorMateria(AMateria *item)
