@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:03:17 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/14 18:21:35 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:47:57 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Character::Character(void)
     this->_floor_items = NULL;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
-    std::cout << "Character default constructor called" << std::endl;
+    // std::cout << "Character default constructor called" << std::endl;
 }
 
 Character::Character(Character const &rhs)
@@ -26,7 +26,7 @@ Character::Character(Character const &rhs)
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
     *this = rhs;
-    std::cout << "Character copy constructor called" << std::endl;
+    // std::cout << "Character copy constructor called" << std::endl;
 }
 
 Character::~Character(void)
@@ -42,7 +42,7 @@ Character::~Character(void)
             delete this->_floor_items[i];
         delete[] this->_floor_items;
     }
-    std::cout << "Character destructor called" << std::endl;
+    // std::cout << "Character destructor called" << std::endl;
 }
 
 Character &Character::operator=(Character const &rhs)
@@ -67,7 +67,7 @@ Character::Character(std::string name)
     this->_name = name;
     for (int i = 0; i < 4; i++)
         this->_items[i] = NULL;
-    std::cout << "Character string constructor called" << std::endl;
+    // std::cout << "Character string constructor called" << std::endl;
 }
 
 std::string const &Character::getName() const

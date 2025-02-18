@@ -1,5 +1,7 @@
 {
   "files.associations": {
+    "*.c": "c",
+    "*.h": "c",
     "*.embeddedhtml": "html",
     "atomic": "cpp",
     "bit": "cpp",
@@ -40,6 +42,13 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "array": "cpp",
+    "deque": "cpp",
+    "iterator": "cpp",
+    "numeric": "cpp",
+    "numbers": "cpp",
+    "ranges": "cpp",
+    "span": "cpp"
   }
 }

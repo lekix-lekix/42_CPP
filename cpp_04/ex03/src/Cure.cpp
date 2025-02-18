@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:39:13 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/02 18:55:26 by lekix            ###   ########.fr       */
+/*   Updated: 2025/02/18 11:57:27 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
-    std::cout << "Cure default constructor called" << std::endl;    
+    // std::cout << "Cure default constructor called" << std::endl;    
 }
 
 Cure::Cure(Cure const &rhs) : AMateria(rhs)
@@ -24,7 +24,7 @@ Cure::Cure(Cure const &rhs) : AMateria(rhs)
 
 Cure::~Cure(void)
 {
-    std::cout << "Cure destructor called" << std::endl;
+    // std::cout << "Cure destructor called" << std::endl;
 }
 
 Cure &Cure::operator=(Cure const &rhs)

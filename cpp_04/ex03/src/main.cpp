@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 15:46:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/17 18:33:03 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:59:00 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,49 @@ int main()
     }
 
     AMateria *ice = NULL;
+    AMateria *ice2 = NULL;
+    AMateria *ice3 = NULL;
     AMateria *cure = NULL;
+    AMateria *cure2 = NULL;
+    MateriaSource *src = NULL;
     ICharacter *arthur = NULL;
 
     try
     {
         arthur = new Character("Arthur");
-        cure = new Cure();
+        
         ice = new Ice();
+        ice2 = new Ice();
+        ice3 = new Ice();
+        cure = new Cure();
+        cure2 = new Cure();
+        src = new MateriaSource();
+        
+        arthur->equip(NULL);
+        arthur->unequip(0);
+        arthur->unequip(-1);
+        arthur->unequip(6);
+        
+        src->createMateria("ice");
+        src->learnMateria(NULL);
+        src->learnMateria(cure);
+        src->learnMateria(cure);
+        src->learnMateria(ice);
+        
     }
     catch (std::bad_alloc &e)
     {
         delete ice;
+        delete ice2;
+        delete ice3;
         delete cure;
+        delete cure2;
         delete arthur;
+        delete src;
     }
+
+    // delete ice;
+    // delete cure;
+    delete arthur;
+    delete src;
 }

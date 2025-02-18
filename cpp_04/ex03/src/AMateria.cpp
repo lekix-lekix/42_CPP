@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:45:40 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/04 18:04:26 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:55:18 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 AMateria::AMateria(void) : _equipped(false)
 {
-    std::cout << "AMateria default constructor called" << std::endl;
+    // std::cout << "AMateria default constructor called" << std::endl;
 }
 
 AMateria::AMateria(AMateria const &rhs)
@@ -24,7 +24,7 @@ AMateria::AMateria(AMateria const &rhs)
 
 AMateria::~AMateria(void)
 {
-    std::cout << "AMateria destructor called" << std::endl;
+    // std::cout << "AMateria destructor called" << std::endl;
 }
 
 AMateria &AMateria::operator=(AMateria const &rhs)
@@ -36,7 +36,7 @@ AMateria &AMateria::operator=(AMateria const &rhs)
 
 AMateria::AMateria(std::string const &type) : _type(type), _equipped(false)
 {
-    std::cout << "AMateria string constructor called" << std::endl;
+    // std::cout << "AMateria string constructor called" << std::endl;
 }
 
 bool AMateria::getEquipStatus(void) const

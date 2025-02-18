@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 17:36:18 by lekix             #+#    #+#             */
-/*   Updated: 2025/02/14 18:18:10 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:47:32 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ MateriaSource::MateriaSource(void)
 {
     for (int i = 0; i < 4; i++)
         this->_stock[i] = NULL;
-    std::cout << "MateriaSource constructor called" << std::endl;
+    // std::cout << "MateriaSource constructor called" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &rhs)
 {
     *this = rhs;
-    std::cout << "MateriaSource copy constructor called" << std::endl;
+    // std::cout << "MateriaSource copy constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource(void)
@@ -32,7 +32,7 @@ MateriaSource::~MateriaSource(void)
         if (this->_stock[i])
             delete this->_stock[i];
     }
-    std::cout << "MateriaSource destructor called" << std::endl;
+    // std::cout << "MateriaSource destructor called" << std::endl;
 }
 
 MateriaSource &MateriaSource::operator=(MateriaSource const &rhs)
@@ -55,7 +55,7 @@ void MateriaSource::learnMateria(AMateria *m)
     {
         if (this->_stock[i] == m)
         {
-            std::cout << "Materia already in stock ! Aborting..";
+            std::cout << "Materia already in stock ! Aborting.." << std::endl;
             return ;
         }
     }
