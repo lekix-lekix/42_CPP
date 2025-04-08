@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:06:06 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/01/21 16:06:10 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:19:33 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     }
     infile.open(argv[1], std::ios::in);
     if (!infile.is_open())
-        return (file_error());
+        return (file_error());  
     filename = std::string(argv[1]).append(".replace");
     outfile.open(filename.c_str());
     if (!outfile.is_open())

@@ -6,22 +6,19 @@
 #    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/02/01 15:40:25 by lekix            ###   ########.fr        #
+#    Updated: 2025/04/08 21:38:00 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Animal
+NAME = Form
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/Animal.cpp \
-		./src/Dog.cpp \
-		./src/Cat.cpp \
-		./src/WrongAnimal.cpp \
-		./src/WrongCat.cpp \
-		./src/main.cpp
+SRCS = ./Bureaucrat.cpp \
+		./Form.cpp \
+		./main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

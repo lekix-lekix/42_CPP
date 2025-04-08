@@ -53,5 +53,6 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp"
-  }
+  },
+  "idf.pythonInstallPath": "/usr/bin/python3"
 }

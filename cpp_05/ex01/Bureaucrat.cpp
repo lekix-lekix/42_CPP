@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:28:19 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/08 15:02:39 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:26:13 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,28 @@ void Bureaucrat::decGrade(void)
     std::cout << this->getName() << " got demoted! New grade: " << this->getGrade() << "\n";
 }
 
+void Bureaucrat::signForm(Form & to_sign)
+{
+    try
+    {
+        to_sign.beSigned(*this);
+        std::cout << this->getName() << " succefully signed " << to_sign.getName() << "\n";
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn't sign " << to_sign.getName() << " because : " << e.what();
+    }
+    
+}
+
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("Exception : grade too high !\n");
+    return ("Bureaucrat exception : grade too high !\n");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("Exception : grade too low !\n");
+    return ("Bureaucrat exception : grade too low !\n");
 }
 
 std::ostream & operator<<(std::ostream &os, Bureaucrat & src)
