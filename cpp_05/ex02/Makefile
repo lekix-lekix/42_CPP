@@ -3,21 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
+#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/02/10 15:53:54 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/02/01 15:40:25 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Form
+NAME = Animal
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/Bureaucrat.cpp \
-		./src/AForm.cpp \
+SRCS = ./src/Animal.cpp \
+		./src/Dog.cpp \
+		./src/Cat.cpp \
+		./src/WrongAnimal.cpp \
+		./src/WrongCat.cpp \
 		./src/main.cpp
 
 OBJS = $(SRCS:.cpp=.o)

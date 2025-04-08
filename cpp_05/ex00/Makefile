@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
+#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/02/07 13:06:11 by lekix            ###   ########.fr        #
+#    Updated: 2025/04/08 13:07:12 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/Bureaucrat.cpp \
-		./src/main.cpp
+SRCS = ./Bureaucrat.cpp \
+		./main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -33,7 +33,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(FLAGS) $(OBJS) -o $@
 
 clean:
-	rm -rf ./src/*.o
+	rm -rf ./*.o
 
 fclean:	clean
 	rm -f $(NAME)
