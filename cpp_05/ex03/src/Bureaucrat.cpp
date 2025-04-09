@@ -6,11 +6,11 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:28:19 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/09 13:38:25 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/09 17:11:41 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./Bureaucrat.hpp"
+#include "../include/Bureaucrat.hpp"
 
 /****** ORTHODOX CANONICAL FORM ******/
 
@@ -75,7 +75,7 @@ void Bureaucrat::decGrade(void)
     std::cout << this->getName() << " got demoted! New grade: " << this->getGrade() << "\n";
 }
 
-void Bureaucrat::signForm(Form & to_sign)
+void Bureaucrat::signForm(AForm & to_sign)
 {
     try
     {
@@ -85,6 +85,19 @@ void Bureaucrat::signForm(Form & to_sign)
     catch(const std::exception& e)
     {
         std::cout << this->getName() << " couldn't sign " << to_sign.getName() << " because : " << e.what();
+    }
+    
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+    try
+    {
+        form.execute(*this);
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->_name << " couldnt execute the form because : " << e.what();
     }
     
 }

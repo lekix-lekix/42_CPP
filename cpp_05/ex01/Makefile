@@ -6,7 +6,7 @@
 #    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/04/08 21:38:00 by lekix            ###   ########.fr        #
+#    Updated: 2025/04/09 13:44:51 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(FLAGS) $(OBJS) -o $@
 
 clean:
-	rm -rf ./src/*.o
+	rm -rf ./*.o
 
 fclean:	clean
 	rm -f $(NAME)

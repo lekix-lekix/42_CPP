@@ -6,38 +6,42 @@
 #    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/02/01 15:40:25 by lekix            ###   ########.fr        #
+#    Updated: 2025/04/09 18:39:25 by lekix            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Animal
+NAME = Form
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/Animal.cpp \
-		./src/Dog.cpp \
-		./src/Cat.cpp \
-		./src/WrongAnimal.cpp \
-		./src/WrongCat.cpp \
+SRCS = ./src/Bureaucrat.cpp \
+		./src/AForm.cpp \
+		./src/ShrubberyCreationForm.cpp \
+		./src/RobotomyRequestForm.cpp \
+		./src/PresidentialPardonForm.cpp \
+		./src/Intern.cpp \
 		./src/main.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+OBJ = $(SRCS:.cpp=.o)
+
+OBJS_DIR = .objs/
+
+OBJS = $(addprefix $(OBJS_DIR), $(OBJ))
 
 all: $(NAME)
 
-$(OBJS_PATH):
-	mkdir -p $(OBJS_PATH)
-
-$(OBJS_PATH)%.o: $(SCRS)%.cpp
+$(OBJS_DIR)%.o: %.cpp
+	mkdir -p $(@D)
 	$(CXX) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CXX) $(FLAGS) $(OBJS) -o $@
+	$(CXX) $(FLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf ./src/*.o
+	rm -rf $(OBJS_DIR)
+	rm -f  ./*_shrubbery
 
 fclean:	clean
 	rm -f $(NAME)
