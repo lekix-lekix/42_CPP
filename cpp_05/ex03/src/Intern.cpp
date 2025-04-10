@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:00:43 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 18:43:01 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 14:27:02 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ AForm *Intern::make_form(std::string form, std::string target)
     std::string form_names[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
     int i = 0;
 
-    while (form_names[i] != form && i < 3)
+    while (i < 3 && form_names[i] != form)
         i++;
     switch (i)
     {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:27:02 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 16:56:50 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 13:10:09 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm();
         ~RobotomyRequestForm();
         RobotomyRequestForm(const RobotomyRequestForm & other);
+        RobotomyRequestForm(std::string const target);
         RobotomyRequestForm & operator=(const RobotomyRequestForm & other);
 };
 

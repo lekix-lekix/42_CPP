@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:57:22 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 18:57:18 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 13:07:26 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 class ShrubberyCreationForm : public AForm
 {
     private:
-        std::string _target;
-        void        launch_form_exec(std::string target) const;
+        void launch_form_exec(std::string target) const;
 
     public:
         ShrubberyCreationForm();
         ~ShrubberyCreationForm();
-        ShrubberyCreationForm(std::string target);
         ShrubberyCreationForm(const ShrubberyCreationForm & other);
+        ShrubberyCreationForm(std::string const target);
         ShrubberyCreationForm & operator=(const ShrubberyCreationForm & other);
 
     class ShrubberyFileError : public std::exception

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:57:16 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 17:26:57 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 13:08:05 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("shrubbery creation", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("shrubbery creation", "", 145, 137)
 {
     std::cout << "Default shrubbery constructor called\n";
 }
@@ -25,6 +25,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & other) : AForm(other)
 {
     *this = other;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const target) : AForm("shrubbery creation", target, 145, 137)
+{
+    std::cout << "Shrubbery paramm constructor called\n";
 }
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreationForm & other)

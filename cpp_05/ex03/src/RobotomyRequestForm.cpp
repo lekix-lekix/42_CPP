@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:30:28 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 18:59:16 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 13:11:12 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/RobotomyRequestForm.hpp"
 #include "stdlib.h"
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("robotomy request", "", 72, 45)
 {
     std::cout << "Robotomy request form created\n";
-}
-
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("robotomy request", 72, 45), _target(target)
-{    
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
@@ -30,6 +26,11 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & other) : AForm(other)
 {
     *this = other;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("robotomy request", target, 72, 45)
+{
+    std::cout << "Param robotomy request constructor called\n"; 
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm & other)

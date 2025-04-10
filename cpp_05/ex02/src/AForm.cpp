@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:56:49 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 16:17:15 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 14:03:54 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /******** CANONICAL FORM *******/
 
-AForm::AForm(void) : _name("Default AForm"), _signed(false), _sign_grade(150), _exec_grade(150)
+AForm::AForm(void) : _name("Default AForm"),  _target(""), _signed(false), _sign_grade(150), _exec_grade(150)
 {
     std::cout << "Default form constructor called\n";
 }
@@ -29,9 +29,8 @@ AForm::AForm(const AForm & other) : _name(other._name), _sign_grade(other._sign_
     *this = other;
 }
 
-AForm::AForm(std::string name, int sign_grade, int exec_grade) : _name(name), _sign_grade(sign_grade), _exec_grade(exec_grade)
+AForm::AForm(std::string name, std::string target, int sign_grade, int exec_grade) : _name(name), _target(target), _signed(false), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
-    this->_signed = false;
     if (sign_grade > 150 || exec_grade > 150)
         throw GradeTooLowException();
     else if (sign_grade <= 0 || exec_grade <= 0)
@@ -58,6 +57,11 @@ std::string AForm::getName(void)
     return this->_name;
 }
 
+std::string AForm::getTarget(void)
+{
+    return this->_target;
+}
+
 bool AForm::getSignStatus(void)
 {
     return this->_signed;
@@ -77,6 +81,8 @@ void AForm::beSigned(Bureaucrat & signatory)
 {
     if (this->_sign_grade < signatory.getGrade())
         throw GradeTooLowException();
+    else if (this->_signed)
+        throw FormAlreadySigned();
     this->_signed = true;
     std::cout << this->_name << " has been signed!\n";
 }
@@ -103,4 +109,9 @@ const char *AForm::GradeTooLowException::what() const throw()
 const char *AForm::FormNotSigned::what() const throw()
 {
     return ("Form must be signed before execution\n");
+}
+
+const char *AForm::FormAlreadySigned::what() const throw()
+{
+    return ("Form is already signed\n");
 }

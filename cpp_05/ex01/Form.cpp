@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:56:49 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/09 16:10:19 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 12:34:26 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name), _sig
     this->_signed = false;
     if (sign_grade > 150 || exec_grade > 150)
         throw GradeTooLowException();
-    else if (sign_grade <= 0 || exec_grade <= 0)
+    else if (sign_grade < 1 || exec_grade < 1)
         throw GradeTooHighException();
 }
 
@@ -75,7 +75,7 @@ int Form::getExecGrade(void)
 
 void Form::beSigned(Bureaucrat & signatory)
 {
-    if (this->_sign_grade < signatory.getGrade())
+    if (signatory.getGrade() > this->getSignGrade())
         throw GradeTooLowException();
     this->_signed = true;
     std::cout << this->_name << " has been signed!\n";

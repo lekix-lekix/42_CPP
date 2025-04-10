@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:38:41 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/09 16:16:47 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 14:01:38 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class AForm
 {
     private:
         const std::string _name;
+        const std::string _target;
         bool              _signed;
         const int         _sign_grade;
         const int         _exec_grade;
@@ -30,10 +31,11 @@ class AForm
         AForm(void);
         virtual ~AForm(void);
         AForm(const AForm & other);
-        AForm(std::string name, int sign_grade, int exec_grade);
+        AForm(std::string name, std::string target, int sign_grade, int exec_grade);
         AForm & operator=(const AForm & other);
 
         std::string             getName(void);
+        std::string             getTarget(void);
         bool                    getSignStatus(void);
         int                     getSignGrade(void);
         int                     getExecGrade(void);
@@ -48,6 +50,11 @@ class AForm
         };
     
         class GradeTooLowException : public std::exception
+        {
+            const char *what(void) const throw();
+        };
+
+        class FormAlreadySigned : public std::exception
         {
             const char *what(void) const throw();
         };

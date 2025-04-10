@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:54:06 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/09 17:12:34 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 14:24:48 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,21 @@ int main ()
 {
     try 
     {
-        PresidentialPardonForm form;
+        ShrubberyCreationForm form("les gens");
+        PresidentialPardonForm form1("la france");
+        RobotomyRequestForm form2("le peuple");
+        std::cout << form;
+        std::cout << form1;
+        std::cout << form2;
         Bureaucrat macron("Macron", 1);
-        Bureaucrat micron("Micron", 150);
+        Bureaucrat micron("Micron", 2);
         form.beSigned(macron);
-        macron.executeForm(form);
-        micron.executeForm(form);
+        form.execute(macron);
+        micron.signForm(form);
+        micron.executeForm(form1);
+        micron.signForm(form1);
+        micron.signForm(form2);
+        macron.executeForm(form2);
     }
     catch (std::exception &e)
     {

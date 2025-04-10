@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:23:52 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/08 15:02:47 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/10 12:13:27 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Bureaucrat
 {
     private:
-        const std::string _name;
+        std::string const _name;
         int               _grade;
 
     public:

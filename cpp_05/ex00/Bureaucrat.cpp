@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:28:19 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/08 21:18:16 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 12:17:52 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 /****** ORTHODOX CANONICAL FORM ******/
 
-Bureaucrat::Bureaucrat(void) : _name("Default Bureaucrat"), _grade(0)
+Bureaucrat::Bureaucrat(void) : _name("Default Bureaucrat"), _grade(150)
 {
-    std::cout << "Public Bureaucrat constructor called\n";
+    std::cout << "Default Bureaucrat constructor called\n";
 }
 
 Bureaucrat::~Bureaucrat(void)
 {
-    std::cout << "Public destructor called\n";
+    std::cout << "Default destructor called\n";
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat & other) : _name(other._name)

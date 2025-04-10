@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:38:41 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/09 13:46:25 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/10 12:21:05 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Bureaucrat;
 class Form
 {
     private:
-        const std::string _name;
+        std::string const _name;
         bool              _signed;
-        const int         _sign_grade;
-        const int         _exec_grade;
+        int const         _sign_grade;
+        int const         _exec_grade;
 
     public:
         Form(void);
