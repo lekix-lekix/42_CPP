@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:15:52 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/11 16:54:10 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:31:40 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <sstream>
 #include <limits>
-#include <exception>
+#include <cstdlib>
 
 class ScalarConverter
 {
