@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:47:26 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/14 18:48:15 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/15 13:39:11 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ bool is_float(std::string const & literal)
     std::istringstream        iss(literal);
     std::string               literal_cpy;
     long double               nb;
-    // std::string               f;
 
     literal_cpy = literal;
     if (literal_cpy[0] == '-' || literal_cpy[0] == '+')
@@ -70,7 +69,6 @@ bool is_double(std::string const & literal)
     std::istringstream        iss(literal);
     std::string               literal_cpy;
     long double               nb;
-    // std::string               f;
 
     literal_cpy = literal;
     if (literal_cpy[0] == '-' || literal_cpy[0] == '+')
@@ -78,7 +76,6 @@ bool is_double(std::string const & literal)
     if (!isdigit(literal_cpy[0]))
         return false;
     iss >> nb;
-    std::cout << "nb = " << nb << "\n";
     if (test_of_double(nb))
         return false;
     return true;
@@ -92,15 +89,23 @@ bool is_impossible(std::string const & literal)
     iss >> big_nb;
     std::cout << "char: impossible\n";
     std::cout << "int: impossible\n";
+    if (test_literal(literal) == false)
+    {
+        std::cout << "float: nanf\n";
+        std::cout << "double: nan\n";
+        return true;
+    }
     if (literal == "+inf" || literal == "+inff")
     {
         std::cout << "float: +inff\n";    
         std::cout << "double: +inf\n";
+        return true;
     }
-    else if (literal == "-inf" || literal == "+inff")
+    else if (literal == "-inf" || literal == "-inff")
     {
         std::cout << "float: -inff\n";
         std::cout << "double: -inf\n";
+        return true;
     }
     if (literal.length() && test_of_float(big_nb))
     {
@@ -128,7 +133,9 @@ bool test_literal(std::string literal)
     int digits = 0;
     int non_digits = 0;
     
-    if (literal == "+inf" || literal == "-inf" || literal == "+inf" || literal == "-inf")
+    if (literal.length() == 0)
+        return false;
+    if (literal == "+inff" || literal == "-inff" || literal == "+inf" || literal == "-inf")
         return true;
     for (size_t i = 0; i < literal.length(); i++)
     {

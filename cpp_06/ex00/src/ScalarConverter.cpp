@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:19:31 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/14 17:34:03 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/15 15:22:41 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,97 +36,96 @@ bool ScalarConverter::convert(std::string const literal)
     double      decimal = 0;
     std::string f;
 
-    std::cout << "literal = " << literal << "\n" ;
-    std::cout << "length = " << literal.length() << "\n";
-    
-    if (literal.length() == 0)
-        return (is_impossible(literal));
-    iss >> big_nb >> decimal >> f;
-    std::cout << "f = " << f << "\n";
-    // if (f.length() > 1 || literal.find(".f") != literal.npos || )
     if (test_literal(literal) == false)
         return (is_impossible(literal));
-    std::cout << "big_nb : " << big_nb << "\n";
-    // std::cout << "dot : " << dot << "\n";
-    std::cout << "decimal : " << decimal << "\n";
-    // std::cout << "f : " << f << "\n";
-
-    std::cout << "==========\n";
+    iss >> big_nb >> decimal >> f;
     
     if (is_char(literal))
     {
-        std::cout << "Char found\n";
         char c = literal[0];
         std::cout << "char: " << c << "\n";
         std::cout << "int: " << static_cast<int>(c) << "\n";
-        std::cout << "float: " << static_cast<float>(c) << "\n" ;
-        std::cout << "double: " << static_cast<double>(c) << "\n";
+        std::cout << "float: " << static_cast<float>(c) << ".0f\n" ;
+        std::cout << "double: " << static_cast<double>(c) << ".0\n";
         return true;
     }
     else if (is_int(literal))
     {
-        std::cout << "int found\n";
-
-        int nb = std::atoi(literal.c_str());
+        std::istringstream iss(literal);
+        int nb = 0;
 
         std::cout << "char: ";
-        if ((nb >= 0 && nb < 32) || nb > 126)
-            std::cout << "Non displayable\n";
-        else if (nb < 0 || nb > 255)
+        iss >> nb;
+        if (nb < 0 || nb > 255)
             std::cout << "impossible\n";
+        else if ((nb >= 0 && nb < 32) || nb > 126)
+            std::cout << "Non displayable\n";
         else
             std::cout << static_cast<char>(nb) << "\n";
         std::cout << "int: " << nb << "\n";
-        std::cout << "float: " << static_cast<float>(nb) << ".0f" << "\n";
-        std::cout << "double: " << static_cast<double>(nb) << ".0" << "\n";
+        if ((nb >= -1e6 && nb <= 1e6) && !fmod((float)nb, 1.0))
+        {
+            std::cout << "float: " << nb << ".0f\n";
+            std::cout << "double: " << static_cast<double>(nb) << ".0\n";
+        }
+        else
+        {
+            std::cout << "float: " << nb << "f" << "\n";
+            std::cout << "double: " << static_cast<double>(nb) << "\n";
+        }
         return true;
     }
     else if (is_float(literal))
     {
-        std::cout << "float found\n";
         std::istringstream iss(literal);
         float              nb;
 
         iss >> nb;
         std::cout << "char: ";
-        if ((nb >= 0 && nb < 32) || nb > 126)
-            std::cout << "Non displayable\n";
-        else if (nb < 0 || nb > 255)
+        if (nb < 0 || nb > 255)
             std::cout << "impossible\n";
+        else if ((nb >= 0 && nb < 32) || nb > 126)
+            std::cout << "Non displayable\n";
         else
             std::cout << static_cast<char>(nb) << "\n";
         if (!test_of_int(literal))
             std::cout << "int: " << static_cast<int>(nb) << "\n";
         else
             std::cout << "int: impossible\n";
-        std::cout << "float: " << nb << "f" << "\n";
-        std::cout << "double: " << static_cast<double>(nb) << "\n";
+        if ((nb >= -1e6 && nb <= 1e6) && !fmod(nb, 1.0))
+        {
+            std::cout << "float: " << nb << ".0f\n";
+            std::cout << "double: " << static_cast<double>(nb) << ".0\n";
+        }
+        else
+        {
+            std::cout << "float: " << nb << "f" << "\n";
+            std::cout << "double: " << static_cast<double>(nb) << "\n";
+        }
         return true;
     }
     else if (is_double(literal))
     {
-        std::cout << "Double found\n";
         std::istringstream iss(literal);
         double             nb;
 
         iss >> nb;
         std::cout << "char: ";
-        if ((nb >= 0 && nb < 32) || nb > 126)
-            std::cout << "Non displayable\n";
-        else if (nb < 0 || nb > 255)
+        if (nb < 0 || nb > 255)
             std::cout << "impossible\n";
+        else if ((nb >= 0 && nb < 32) || nb > 126)
+            std::cout << "Non displayable\n";
         else
             std::cout << static_cast<char>(nb) << "\n";
         if (!test_of_int(literal))
             std::cout << "int: " << static_cast<int>(nb) << "\n";
         else
             std::cout << "int: impossible\n";
-        std::cout << "float: ";
-        if (nb < 0)
-            std::cout << "-inff\n";
+        std::cout << "float: " << static_cast<float>(nb) << "\n";
+        if ((nb >= -1e6 && nb <= 1e6) && !std::fmod(nb, 1.0))
+            std::cout << "double: " << nb << ".0\n";
         else
-            std::cout << "+inff\n";
-        std::cout << "double: " << static_cast<double>(nb) << "\n";
+            std::cout << "double: " << nb << "\n";
         return true;
     }
     else
