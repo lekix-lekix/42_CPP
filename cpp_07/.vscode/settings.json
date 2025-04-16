@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "*.h": "c",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "optional": "cpp"
+    }
+}
