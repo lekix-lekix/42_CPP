@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:47:26 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/15 13:39:11 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:13:55 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,9 @@ bool test_literal(std::string literal)
         return false;
     if (literal.find("-") != literal.npos && literal.find("-") != 0)
         return false;
-    if (occurences(literal, '+') > 1 || occurences(literal, '-') > 1)
+    if (literal.find("+") != literal.npos && literal.find("+") != 0)
+        return false;
+    if (occurences(literal, '+') > 1 || occurences(literal, '-') > 1 || occurences(literal, '.') > 1)
         return false;
     return true;
 }
