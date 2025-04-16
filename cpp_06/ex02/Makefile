@@ -6,7 +6,7 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/04/15 18:18:13 by kipouliq         ###   ########.fr        #
+#    Updated: 2025/04/16 12:43:02 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,8 @@ CXX = c++
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 SRCS = ./src/main.cpp \
-		./src/Base.cpp \
-		./src/A.cpp \
-		./src/B.cpp \
-		./src/C.cpp \
-		./src/utils.cpp
+		./src/utils.cpp \
+		./src/AllClasses.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 

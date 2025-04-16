@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:06:19 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/15 18:19:10 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/16 11:47:33 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 #include <exception>
 
 Base *generate(void);
+void  identify(Base* p);
+void  identify(Base& p);
 
 #endif
