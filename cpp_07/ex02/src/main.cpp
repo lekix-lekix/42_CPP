@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:21:40 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/17 15:02:54 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:32:30 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@
 int main ()
 {
     srand(time(0));
+
+    Array<int> empty_arr;
+
+    std::cout << "empty arr size = " << empty_arr.size() << "\n";
+    try
+    {
+        std::cout << empty_arr[2] << "\n";
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << "\n";
+    }
+
     Array<int> arr(5);
 
     for (int i = 0; i < 5; i++)
@@ -25,13 +38,24 @@ int main ()
     for (unsigned int i = 0; i < arr.size(); i++)
         std::cout << arr[i] << "\n";
 
-    Array<char> arr2(10000);
+    Array<char> arr2(100);
 
     for (unsigned int i = 0; i < arr2.size(); i++)
         arr2[i] = rand() % 256;
     
     for (unsigned int i = 0; i < arr2.size(); i++)
         std::cout << arr2[i];
+    std::cout << "\n";
+    std::cout << "==========\n";
+    
+    Array<char> arr_cpy = arr2;
+    
+    for (unsigned int i = 0; i < arr_cpy.size(); i++)
+        std::cout << arr2[i];
+    std::cout << "\n";
+    std::cout << "==========\n";
+    for (unsigned int i = 0; i < arr_cpy.size(); i++)
+        std::cout << arr_cpy[i];
     std::cout << "\n";
 
     Array<std::string> arr3(5);

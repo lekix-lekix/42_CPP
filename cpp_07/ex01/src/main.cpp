@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:21:40 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/17 13:02:41 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/18 13:24:32 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void my_print(U const & to_print)
 int main( void ) 
 {
     int arr[] = {0, 1, 2, 3, 4};
-    int tab[] = { 0, 1, 2, 3, 4 };
     iter(arr, 5, my_print<int>);
-    iter( tab, 5, my_print<int> );
 
     std::cout << "\n";
     
@@ -34,7 +32,4 @@ int main( void )
     
     std::string arr3[] = {"quelle", "indignite", "msieur", "pujadas"};
     iter(arr3, 4, my_print<std::string>);
-
-    int const arr4[] = {4, 5, 6, 7};
-    iter(arr4, 4, my_print<int>);
 }

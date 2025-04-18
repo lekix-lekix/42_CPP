@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:06:39 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/17 14:18:39 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:33:03 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Array
 {
     private:
         unsigned int _size;
-        T            *_content;
+        T           *_content;
     
     public:
         Array(void);
@@ -80,6 +80,7 @@ Array<T>::~Array(void)
 template<typename T>
 Array<T>::Array(Array const & other)
 {
+    this->_content = NULL;
     *this = other;
 }
 
@@ -87,7 +88,8 @@ template<typename T>
 Array<T> & Array<T>::operator=(Array<T> const & other)
 {
     this->_size = other._size;
-    delete [] this->_content;
+    if (this->_content)
+        delete [] this->_content;
     try
     {
         this->_content = new T[this->_size];
