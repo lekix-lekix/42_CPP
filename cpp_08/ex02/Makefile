@@ -3,21 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lekix <lekix@student.42.fr>                +#+  +:+       +#+         #
+#    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 16:29:27 by kipouliq          #+#    #+#              #
-#    Updated: 2025/04/21 18:36:25 by lekix            ###   ########.fr        #
+#    Updated: 2025/04/22 14:33:57 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = span
+NAME = mutantstack
 
 CXX = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
-SRCS = ./src/main.cpp \
-		./src/Span.cpp
+SRCS = ./src/main.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 
