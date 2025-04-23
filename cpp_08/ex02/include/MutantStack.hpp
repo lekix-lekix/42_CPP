@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:14:02 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/22 17:27:35 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/23 16:47:38 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,54 +20,20 @@ template<typename T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container>
 {
     public:
-        MutantStack(void);
-        ~MutantStack(void);
-        MutantStack(MutantStack const & other);
-        MutantStack(Container const & other);
-        MutantStack const &operator=(MutantStack const & rhs);
-        MutantStack const &operator=(Container const & rhs);
+        MutantStack(void) {};
+        ~MutantStack(void) {};
+        MutantStack(MutantStack const & other) { *this = other; };
+        MutantStack(Container const & other) { *this = other; };
+        MutantStack const &operator=(MutantStack const & rhs) { return (this->c = rhs.c), *this; };
+        MutantStack const &operator=(Container const & rhs) { return (this->c = Container(rhs), *this); };
               
-        typedef typename MutantStack::stack::container_type::iterator iterator;
+        typedef typename MutantStack::stack::container_type::iterator               iterator;
+        typedef typename MutantStack::stack::container_type::reverse_iterator       reverse_iterator;
         
-        iterator begin() {return this->c.begin();}
-        iterator end()   {return this->c.end();}
-        iterator next()  {return this->c.next();}
-        iterator prev()   {return this->c.prev();}  
+        iterator begin()          { return this->c.begin(); }
+        iterator end()            { return this->c.end(); }
+        reverse_iterator rbegin() { return this->c.rbegin(); }
+        reverse_iterator rend()   { return this->c.rend(); }
 };
-
-template<typename T, typename Container>
-MutantStack<T, Container>::MutantStack(void)
-{
-}
-
-template<typename T, typename Container>
-MutantStack<T, Container>::~MutantStack(void)
-{
-}
-
-template<typename T, typename Container>
-MutantStack<T, Container>::MutantStack(MutantStack const & other)
-{
-    *this = other;
-}
-
-template<typename T, typename Container>
-MutantStack<T, Container>::MutantStack(Container const & other)
-{
-    *this = other;
-}
-
-template<typename T, typename Container>
-MutantStack<T, Container> const & MutantStack<T, Container>::operator=(MutantStack const & rhs)
-{
-    this->c = rhs.c;
-}
-
-template<typename T, typename Container>
-MutantStack<T, Container> const & MutantStack<T, Container>::operator=(Container const & rhs)
-{
-    this->c = Container(rhs);
-    return *this;
-}
 
 #endif

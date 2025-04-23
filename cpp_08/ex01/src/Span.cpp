@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:06:04 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/21 20:06:42 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/23 12:57:24 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int Span::shortestSpan(void)
 {
     std::vector<int> to_search = this->_numbers;
     std::vector<int>::iterator it;
-    int shortest = this->longestSpan();
+    int shortest = this->longestSpan(); // will throw exception if needed
     int span;
 
     std::sort(to_search.begin(), to_search.end());
     for (it = to_search.begin(); it != to_search.end(); it++)
     {
-        if (it + 1 != to_search.end() && (span = *(it + 1) - *it) != 0)
+        if (it + 1 != to_search.end() && (span = *(it + 1) - *it) != 0 && span < shortest)
             shortest = span;
         if (shortest == 1)
             return shortest;
@@ -83,6 +83,8 @@ void Span::printSpan(void)
 {
     std::vector<int>::iterator it;
 
+    if (_numbers.size() == 0)
+        throw EmptyContainer();
     for (it = this->_numbers.begin(); it != this->_numbers.end(); it++)
         std::cout << *it << "\n";
 }

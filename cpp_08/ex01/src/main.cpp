@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 18:33:48 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/21 20:09:59 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/23 13:02:56 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main ()
     }
     catch(const std::exception& e)
     {
+        std::cout << "first : ";
         std::cerr << e.what();
     }
 
@@ -34,10 +35,10 @@ int main ()
     try
     {
         second.shortestSpan();
-        second.longestSpan();
     }
     catch(const std::exception& e)
     {
+        std::cout << "second : ";
         std::cerr << e.what();
     }
     for (int i = 0; i < 10; i++)
@@ -45,16 +46,18 @@ int main ()
     second.printSpan();
     try
     {
-        second.addNumber(1000);
+        second.addNumber(1);
     }
     catch(std::exception const & e)
     {
+        std::cout << "third: ";
         std::cerr << e.what();
     }
 
     Span third(1000000);
+    third.addNumbers(NULL);
     third.addNumbers(randomNb);
-    third.printSpan();
+    // third.printSpan();
     std::cout << "third shortest = " << third.shortestSpan() << "\n";
     std::cout << "third longest = " << third.longestSpan() << "\n";
 
@@ -67,4 +70,11 @@ int main ()
 
     std::cout << "fourth shortest = " << fourth.shortestSpan() << "\n";
     std::cout << "fourth largest = " << fourth.longestSpan() << "\n";
+
+    Span fifth(5);
+    fifth.addNumbers(randomNb);
+    fifth.printSpan();
+    
+    std::cout << "fifth shortest = " << fifth.shortestSpan() << "\n";
+    std::cout << "fifth largest = " << fifth.longestSpan() << "\n";
 }

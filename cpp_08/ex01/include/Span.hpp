@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:50:30 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/21 19:17:44 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/23 12:46:51 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ class Span
     public:
         Span(void);
         ~Span(void);
-        Span(unsigned int size_max);
         Span(Span const & other);
         Span const &operator=(Span const & rhs);
-
+        
+        Span(unsigned int size_max);
+        
         void        addNumber(int nb);
         void        addNumbers(int (*func)());
         int         shortestSpan(void);
