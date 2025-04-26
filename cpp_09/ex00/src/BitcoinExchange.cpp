@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:14:34 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/25 17:58:36 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:23:57 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,63 +44,86 @@ std::map<std::string, float>BitcoinExchange::openParseDataFile(std::string filen
     return data;
 }
 
+bool    BitcoinExchange::badInput(std::string input)
+{
+    std::cout << "Error: bad input => " << input << "\n";
+    return false;
+}
+
 bool    BitcoinExchange::checkDateValues(std::string date)
 {
     std::string year;
     std::string month;
     std::string day;
 
-    
-    year = date.substr(0, date.find('-'));
-    month = date.substr(date.find('-') + 1, date.find_last_of('-'));
-    std::cout << "last = " << date.find_last_of('-') << "\n";
-    // day = date.substr(date.find_last_of('-', 0), date.length());
+    year = date.substr(0, 4);
+    if (date.find('-') == date.npos)
+        return (this->badInput(date.substr(0, '|')));
+    month = date.substr(date.find('-') + 1, 2);
+    day = date.substr(date.find_last_of('-') + 1, 2);
 
-    // std::cout << year << " " << month << " " << day << "\n";
-    std::cout << year << "\n";
-    std::cout << month << "\n";
+    if (atoi(year.c_str()) <= 0 || atoi(month.c_str()) <= 0 || atoi(month.c_str()) > 31 
+        || atoi(day.c_str()) <= 0 || atoi(day.c_str()) > 31)
+        return this->badInput(date);
+    return true;
+}
+
+std::map<std::string, float>::iterator BitcoinExchange::findCheckDate(std::string line)
+{
+    std::map<std::string, float>::iterator it;
+    size_t                                 delim_pos;
+    std::string                            date;
+
+    delim_pos = line.find('|');
+    if (delim_pos == line.npos)
+        return this->badInput(line), this->_db.end();
+    if (!this->checkDateValues(line.substr(0, line.find('|'))))
+        return this->_db.end();
+    date = line.substr(0, delim_pos);
+    it = this->_db.find(date);
+    if (it == this->_db.end())
+    {
+        it = this->_db.lower_bound(date);
+        if (it == this->_db.begin())
+            return this->badInput(line), this->_db.end();
+        --it;
+    }
+    return it;
+}
+
+bool    BitcoinExchange::checkFloatValue(std::string float_value)
+{
+    float value;
+    
+    if (float_value.find_first_not_of("0123456789.-"))
+        return this->badInput(float_value);
+    value = atof(float_value.c_str());
+    if (value < 0)
+        return std::cout << "Error: not a positive number.\n", false;
+    if (value > 1000)
+        return std::cout << "Error: too large a number.\n", false;
     return true;
 }
 
 void    BitcoinExchange::openParseInputFile(std::string filename)
 {
     std::map<std::string, float>::iterator it;
-    std::ifstream   inputfile;
-    std::string     line;
+    std::ifstream                          inputfile;
+    std::string                            line;
+    float                                  btc_value;
     
     inputfile.open(filename.c_str());
     if (!inputfile.is_open())
         throw FileError();
     while (std::getline(inputfile, line, '\n'))
-    {   
-        this->checkDateValues(line);
-        size_t delim_pos = line.find('|');
-        if (delim_pos == std::string::npos)
-        {
-            std::cout << "Error: bad input => " << line << "\n";
+    {
+        if ((it = this->findCheckDate(line)) == this->_db.end())
             continue;
-        }
-        std::string year = line.substr(0, delim_pos);
-        it = this->_db.find(year);
-        if (it == this->_db.end())
-        {
-            it = this->_db.lower_bound(year);
-            if (it == this->_db.begin())
-            {
-                std::cout << "Error: bad input => " << line << "\n";
-                continue;
-            }
-            --it;
-            std::cout << it->first << "\n";
-        }
-        // if (it2 == input_data.end())
-        // {
-        //     it2 = this->_db.lower_bound(it->first);
-        //     std::cout << "lower bound\n";
-        // }
-        // if (it2 == input_data.end())
-        // printf("invalid input \n");
-        // std::cout << it2->first << " => " << it2->second << "\n";
+        std::string float_value = line.substr(line.find('|') + 1);
+        if (!checkFloatValue(float_value))
+            continue;
+        btc_value = atof(float_value.c_str());
+        std::cout << it->first << " => " << btc_value << " = " << (it->second * btc_value) << "\n";
     }
 }
 

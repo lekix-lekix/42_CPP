@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:10:58 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/25 17:46:47 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:04:09 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 class BitcoinExchange
 {
     private:
-        std::map<std::string, float> _db;
-        std::map<std::string, float> _file;
-        bool                         checkDateValues(std::string);
+        std::map<std::string, float>                _db;
+        std::map<std::string, float>                _file;
+        std::map<std::string, float>::iterator      findCheckDate(std::string input);
+        bool                                        badInput(std::string input);
+        bool                                        checkDateValues(std::string date);
+        bool                                        checkFloatValue(std::string float_value);
 
     public:
         BitcoinExchange();
