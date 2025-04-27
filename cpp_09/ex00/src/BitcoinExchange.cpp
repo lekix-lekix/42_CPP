@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:14:34 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/26 20:23:57 by lekix            ###   ########.fr       */
+/*   Updated: 2025/04/27 17:45:47 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ BitcoinExchange::BitcoinExchange(void)
     {
         throw e;
     }
+}
+
+BitcoinExchange::~BitcoinExchange(void) {}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const & other)
+{
+    *this = other;
+}
+
+BitcoinExchange const & BitcoinExchange::operator=(BitcoinExchange const & rhs)
+{
+    this->_db = rhs._db;
+    return *this;
 }
 
 std::map<std::string, float>BitcoinExchange::openParseDataFile(std::string filename, char delim, std::string charset)
@@ -61,7 +74,6 @@ bool    BitcoinExchange::checkDateValues(std::string date)
         return (this->badInput(date.substr(0, '|')));
     month = date.substr(date.find('-') + 1, 2);
     day = date.substr(date.find_last_of('-') + 1, 2);
-
     if (atoi(year.c_str()) <= 0 || atoi(month.c_str()) <= 0 || atoi(month.c_str()) > 31 
         || atoi(day.c_str()) <= 0 || atoi(day.c_str()) > 31)
         return this->badInput(date);
@@ -110,34 +122,24 @@ void    BitcoinExchange::openParseInputFile(std::string filename)
     std::map<std::string, float>::iterator it;
     std::ifstream                          inputfile;
     std::string                            line;
-    float                                  btc_value;
-    
+    std::string                            float_value;
+
+    if (!filename.length())
+        throw FileError();
     inputfile.open(filename.c_str());
     if (!inputfile.is_open())
         throw FileError();
+    std::getline(inputfile, line, '\n');
     while (std::getline(inputfile, line, '\n'))
     {
         if ((it = this->findCheckDate(line)) == this->_db.end())
             continue;
-        std::string float_value = line.substr(line.find('|') + 1);
+        float_value = line.substr(line.find('|') + 1);
         if (!checkFloatValue(float_value))
             continue;
-        btc_value = atof(float_value.c_str());
+        float btc_value = atof(float_value.c_str());
         std::cout << it->first << " => " << btc_value << " = " << (it->second * btc_value) << "\n";
     }
-}
-
-BitcoinExchange::~BitcoinExchange(void) {}
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & other)
-{
-    *this = other;
-}
-
-BitcoinExchange const & BitcoinExchange::operator=(BitcoinExchange const & rhs)
-{
-    this->_db = rhs._db;
-    return *this;
 }
 
 void BitcoinExchange::printData(void)

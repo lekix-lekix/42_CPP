@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:32:32 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/25 16:26:34 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:37:34 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-        return -1;
+    (void) argc;
     try
     {
         BitcoinExchange data;
-        // data.printData();
+        if (argc != 2)
+            throw BitcoinExchange::FileError();
         data.openParseInputFile(std::string(argv[1]));
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what();
     }
     
 }
