@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:35:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/08 19:25:50 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/09 17:32:14 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ class PmergeMe
         std::vector<t_vec_pair>              makePairs(std::vector<int> & container, int pair_size);
         std::vector<t_vec_pair>::iterator    findPairByLabel(std::vector<t_vec_pair> & pending, std::string c, int current_nb);
         void                                 pushBackPairs(std::vector<int> & container, std::vector<t_vec_pair> & vec_pairs);
-        void                                 getJacobsthalSeq(std::vector<int> & seq, int nb);
-        int                                  jacobSthalRecursive(int nb);
+        std::vector<int>                     getJacobsthalSeq(void);
         std::vector<int>                     jacobsthalInsertion(std::vector<t_vec_pair> & vec_pairs);
         void                                 insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert);
         void                                 revInsertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert);
 
+        std::vector<int>                     getVecContainer(void);
+        
         template<typename T>
         bool isSorted(T container);
 
@@ -66,5 +67,21 @@ class PmergeMe
             const char *what(void) const throw();
     };
 };
+
+template<typename T>
+bool PmergeMe::isSorted(T container)
+{
+    typename T::iterator it;
+
+    for (it = container.begin(); it != container.end(); it++)
+    {
+        if (it != container.end() - 1 && *it > *(it + 1))
+        {
+            std::cout << "problematic item = " << *it << "\n";
+            return false;
+        }
+    }
+    return true;
+}
 
 #endif

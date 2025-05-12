@@ -6,7 +6,7 @@
 /*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:43:22 by lekix             #+#    #+#             */
-/*   Updated: 2025/04/28 22:14:45 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/09 17:24:48 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int main (int argc, char **argv)
         to_sort.loadContainers(argv + 1);
         to_sort.sortContainers();
         to_sort.printContainers();
+        if (to_sort.isSorted(to_sort.getVecContainer()))
+            std::cout << "Its sorted baby!\n";
+        else
+            std::cout << "Its not sorted dumbass\n";
     }
     catch (std::exception &e)
     {
