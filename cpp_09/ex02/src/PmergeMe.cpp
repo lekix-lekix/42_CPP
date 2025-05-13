@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:36:44 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/09 19:22:37 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/13 15:29:02 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,14 @@ void PmergeMe::labelPairs(std::vector<t_vec_pair> & pairs, int pair_size)
         oss.clear();
         oss << j;
         if (i % 2 == 0)
+        {
+            std::cout << "prev = " << prev << "\n";
             it->label = "b" + oss.str();
+            it->bind = prev;
+        }
         else
         {
             it->label = "a" + oss.str();
-            it->bind = prev;
             j++;
         }
         i++;
@@ -180,22 +183,26 @@ std::vector<t_vec_pair>::iterator PmergeMe::findPairByLabel(std::vector<t_vec_pa
     return pending.end();
 }
 
-void    PmergeMe::insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert)
+void    PmergeMe::insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert, std::vector<t_vec_pair>::iterator bound)
 {
-    std::vector<t_vec_pair>::iterator it = main.begin();
-    t_vec_pair *                      bound = to_insert->bind;
+    int middle = std::distance(main.begin(), bound) / 2;
 
-    while (it != main.end() || &(*it) == bound)
-    {
-        // std::cout << "in loop it = " << it->pair.back() << " to insert = " << to_insert->pair.back() << std::endl;
-        if (it->pair.back() > to_insert->pair.back())
-        {
-            // std::cout << "match : " << it->pair.back() << "\n";
-            main.insert(it, *to_insert);
-            return ;
-        }
-        it++;
-    }
+    std::cout << "bound = " << bound->pair.back();
+    std::cout << " to insert = " << to_insert->pair.back();
+    std::cout << " distance = " << middle << "\n";
+    // std::cout << "begin = " << begin << " bound = " << bound << " " << bound->pair.back() << "\n";
+    // std::cout << "size = " << bound - begin << "\n";
+    // while (1)
+    // {
+    //     // std::cout << "in loop it = " << it->pair.back() << " to insert = " << to_insert->pair.back() << std::endl;
+    //     if (it->pair.back() > to_insert->pair.back())
+    //     {
+    //         // std::cout << "match : " << it->pair.back() << "\n";
+    //         main.insert(it, *to_insert);
+    //         return ;
+    //     }
+    //     it++;
+    // }
 }
 
 void PmergeMe::revInsertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert)
@@ -249,32 +256,41 @@ std::vector<int> PmergeMe::jacobsthalInsertion(std::vector<t_vec_pair> & vec_pai
         vec_pairs.erase(it);
         it = vec_pairs.begin();
     }
-    // std::cout << "MAIN ====\n";
-    // printPairs(main);
-    // std::cout << "PENDING ====\n";
-    // printPairs(pending);
-    // std::cout << "NON PARTICIPATING ====\n ";
-    // printPairs(vec_pairs);
+    std::cout << "MAIN ====\n";
+    printPairs(main);
+    std::cout << "PENDING ====\n";
+    printPairs(pending);
+    std::cout << "NON PARTICIPATING ====\n ";
+    printPairs(vec_pairs);
     while (pending.size() != 0)
     {
         int current_jacob_nb = jacobsthalSeq.back();
         int prev_nb = jacobsthalSeq[jacobsthalSeq.size() - 2];
         int iter = current_jacob_nb - prev_nb;
-        // std::cout << "current jaacob nb = " << current_jacob_nb << "prev_nb = " << prev_nb << std::endl;
+        std::cout << "current jaacob nb = " << current_jacob_nb << "prev_nb = " << prev_nb << std::endl;
         for (int i = 0; i != iter && pending.size(); i++)
         {
             std::vector<t_vec_pair>::iterator it = findPairByLabel(pending, "b", current_jacob_nb - i);
-            if (it == pending.end()) // not sure about this
+            std::vector<t_vec_pair>::iterator bound = findPairByLabel(main, "a", current_jacob_nb - i);
+            if (it == pending.end() && pending.size() == 1) // not sure about this
             {
-                // std::cout << "here\n";
-                this->revInsertMain(main, pending.begin());
-                pending.erase(pending.begin());
+                std::cout << "not found\n";
+                it = pending.begin();
             }
-            else
-            {
-                this->insertMain(main, it);
-                pending.erase(it);
-            }
+            for (int j = current_jacob_nb - i; bound == main.end(); j--)
+                bound = findPairByLabel(main, "a", current_jacob_nb - j);
+            // {
+            //     // std::cout << "here\n";
+            //     this->revInsertMain(main, pending.begin());
+            //     pending.erase(pending.begin());
+            // }
+            // else
+            // {
+            // if (it == pending.end())
+            //     std::cout << "not found\n";
+            this->insertMain(main, it, bound);
+            pending.erase(it);
+            // }
             // current_nb -= 1;
         }
         // int new_jacob_nb = current_jacob_nb + 2 * prev_nb;
