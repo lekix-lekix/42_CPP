@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:35:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/13 14:54:15 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:39:14 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ class PmergeMe
         void                                 pushBackPairs(std::vector<int> & container, std::vector<t_vec_pair> & vec_pairs);
         std::vector<int>                     getJacobsthalSeq(void);
         std::vector<int>                     jacobsthalInsertion(std::vector<t_vec_pair> & vec_pairs);
-        void                                 insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert, std::vector<t_vec_pair>::iterator bound);
+        void                                 insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator begin, std::vector<t_vec_pair>::iterator end, std::vector<t_vec_pair>::iterator to_insert);
         void                                 revInsertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert);
 
         std::vector<int>                     getVecContainer(void);

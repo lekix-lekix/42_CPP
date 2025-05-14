@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:36:44 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/13 15:29:02 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:50:37 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,33 +183,30 @@ std::vector<t_vec_pair>::iterator PmergeMe::findPairByLabel(std::vector<t_vec_pa
     return pending.end();
 }
 
-void    PmergeMe::insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert, std::vector<t_vec_pair>::iterator bound)
+void    PmergeMe::insertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator begin, std::vector<t_vec_pair>::iterator end, std::vector<t_vec_pair>::iterator to_insert)
 {
-    int middle = std::distance(main.begin(), bound) / 2;
-
-    std::cout << "bound = " << bound->pair.back();
-    std::cout << " to insert = " << to_insert->pair.back();
-    std::cout << " distance = " << middle << "\n";
-    // std::cout << "begin = " << begin << " bound = " << bound << " " << bound->pair.back() << "\n";
-    // std::cout << "size = " << bound - begin << "\n";
-    // while (1)
-    // {
-    //     // std::cout << "in loop it = " << it->pair.back() << " to insert = " << to_insert->pair.back() << std::endl;
-    //     if (it->pair.back() > to_insert->pair.back())
-    //     {
-    //         // std::cout << "match : " << it->pair.back() << "\n";
-    //         main.insert(it, *to_insert);
-    //         return ;
-    //     }
-    //     it++;
-    // }
+    int size = std::distance(begin, end);
+    int middle = size / 2;
+    
+    if (to_insert->pair.back() > (begin + middle)->pair.back() && to_insert->pair.back() < (begin + middle + 1)->pair.back())
+    {
+        std::cout << "inserting node " << to_insert->pair.back() << " before : " << (begin + middle + 1)->pair.back() << "\n";
+        main.insert(begin + middle + 1, *to_insert);
+        return ;
+    }
+    if (to_insert->pair.back() < (begin + middle)->pair.back())
+    {
+        insertMain(main, main.begin(), begin + middle, to_insert);
+    }
+    else
+        insertMain(main, begin + middle, end, to_insert);
 }
 
 void PmergeMe::revInsertMain(std::vector<t_vec_pair> & main, std::vector<t_vec_pair>::iterator to_insert)
 {
     std::vector<t_vec_pair>::reverse_iterator it = main.rbegin();
     t_vec_pair *                      bound = to_insert->bind;
-    
+
     while (it != main.rend() || &(*it) == bound)
     {
         std::cout << "in loop it = " << it->pair.back() << " to insert = " << to_insert->pair.back() << std::endl;
@@ -279,6 +276,8 @@ std::vector<int> PmergeMe::jacobsthalInsertion(std::vector<t_vec_pair> & vec_pai
             }
             for (int j = current_jacob_nb - i; bound == main.end(); j--)
                 bound = findPairByLabel(main, "a", current_jacob_nb - j);
+            if (bound == main.end())
+                std::cout << "bound not found\n";
             // {
             //     // std::cout << "here\n";
             //     this->revInsertMain(main, pending.begin());
@@ -288,7 +287,7 @@ std::vector<int> PmergeMe::jacobsthalInsertion(std::vector<t_vec_pair> & vec_pai
             // {
             // if (it == pending.end())
             //     std::cout << "not found\n";
-            this->insertMain(main, it, bound);
+            this->insertMain(main, main.begin(), bound, it);
             pending.erase(it);
             // }
             // current_nb -= 1;
@@ -297,8 +296,8 @@ std::vector<int> PmergeMe::jacobsthalInsertion(std::vector<t_vec_pair> & vec_pai
         // std::cout << "new nb = " << new_jacob_nb << "\n";
         jacobsthalSeq.push_back(current_jacob_nb + 2 * jacobsthalSeq[jacobsthalSeq.size() - 2]);
     }
-    // std::cout << "MAIN FINAL ====\n";
-    // printPairs(main);
+    std::cout << "MAIN FINAL ====\n";
+    printPairs(main);
     pushBackPairs(final_vec, main);
     pushBackPairs(final_vec, vec_pairs);
     return final_vec;
