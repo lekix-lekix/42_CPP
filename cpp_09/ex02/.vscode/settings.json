@@ -1,5 +1,7 @@
 {
   "files.associations": {
+    "*.c": "c",
+    "*.h": "c",
     "*.embeddedhtml": "html",
     "array": "cpp",
     "atomic": "cpp",
@@ -44,6 +46,10 @@
     "cwctype": "cpp",
     "deque": "cpp",
     "numbers": "cpp",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "cstdarg": "cpp",
+    "numeric": "cpp",
+    "ranges": "cpp",
+    "span": "cpp"
   }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:43:22 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/09 17:24:48 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/15 18:29:04 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int main (int argc, char **argv)
 {
     if (argc < 2)
+    {
+        std::cerr << "Error\n";
         return -1;
+    }
     
     PmergeMe to_sort;
     try
