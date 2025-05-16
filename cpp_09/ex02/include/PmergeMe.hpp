@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:35:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/15 18:54:29 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:15:49 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@
 
 typedef struct s_vec_pair
 {
-    std::vector<int>        pair;
-    std::string             label;
-    struct s_vec_pair *     bind;
+    typedef std::vector<int> pair_type;
+    std::vector<int>         pair;
+    std::string              label;
+    struct s_vec_pair *      bind;
 }   t_vec_pair;
 
 typedef struct s_lst_pair
 {
-    std::list<int>          pair;
-    std::string             label;
-    struct s_lst_pair *     bind;
+    typedef std::list<int>   pair_type;
+    std::list<int>           pair;
+    std::string              label;
+    struct s_lst_pair *      bind;
 }   t_lst_pair;
 
 typedef std::vector<t_vec_pair>::iterator t_vec_pair_it;
@@ -54,28 +56,54 @@ class PmergeMe
 
         /********* std::vector *********/
         void                                 recursiveVecSort(std::vector<int> & container, int pair_size);
-        void                                 sortVecPairs(std::vector<t_vec_pair> & pairs, int pair_size);
+        // void                                 sortVecPairs(std::vector<t_vec_pair> & pairs, int pair_size);
         void                                 sortContainers(void);
-        void                                 labelPairs(std::vector<t_vec_pair> & pairs, int pair_size);
-        void                                 printPairs(std::vector<t_vec_pair> & pairs);
         void                                 printContainers(void);
         std::vector<int>                     copyPairsIntoVecContainer(std::vector<t_vec_pair> & vec_pairs);
         std::vector<t_vec_pair>              makeVecPairs(std::vector<int> & container, int pair_size);
-        t_vec_pair_it                        findPairByLabel(std::vector<t_vec_pair> & pending, std::string c, int current_nb);
-        void                                 pushBackPairs(std::vector<int> & container, std::vector<t_vec_pair> & vec_pairs);
-        std::vector<int>                     getJacobsthalSeq(void);
-        void                                 prepChains(std::vector<t_vec_pair> & vec_pairs, std::vector<t_vec_pair> & main, std::vector<t_vec_pair> & pending);
-        std::vector<int>                     jacobsthalInsertion(std::vector<t_vec_pair> & vec_pairs);
-        void                                 insertMain(std::vector<t_vec_pair> & main, t_vec_pair_it begin, t_vec_pair_it end, t_vec_pair_it to_insert, int level);
+        std::vector<int>                     getJacobsthalSeqVec(void);
+        // std::vector<int>                     jacobsthalVecInsertion(std::vector<t_vec_pair> & vec_pairs);
 
         /********** std::list **********/
         void                                 recursiveLstSort(std::list<int> & container, int pair_size);
         std::list<t_lst_pair>                makeLstPairs(std::list<int> & container, int pair_size);
-        void                                 sortLstPairs(std::list<t_lst_pair> & lst_pairs, int pair_size);
+        // void                                 sortLstPairs(std::list<t_lst_pair> & lst_pairs, int pair_size);
+        std::list<int>                       copyPairsIntoLstContainer(std::list<t_lst_pair> & lst_pairs);
+        // std::list<int>                       jacobsthalInsertion(std::list<t_lst_pair> & vec_pairs);
+        std::list<int>                       getJacobsthalSeqLst(void);
+
+        
+        template<template<typename, typename> class T, typename U, typename V>
+        T<U, std::allocator<U> > jacobsthalInsertion(T<V, std::allocator<V> >& vec_pairs);
         
         template<typename T>
         bool isSorted(T container);
 
+        template<typename T>
+        void printPairs(T & pairs);
+
+        template<typename T>
+        void labelPairs(T & pairs, int pair_size);
+
+
+        template<typename T>
+        void getJacobsthalSeq(T & container);
+
+        template<typename T>
+        void prepChains(T & pairs, T & main, T & pending);
+
+        template<template<typename, typename> class T, typename U>
+        typename T<U, std::allocator<U> >::iterator findPairByLabel(T<U, std::allocator<U> > & pending, std::string c, int current_nb);
+
+        template<typename T>
+        void insertMain(T & main, typename T::iterator begin, typename T::iterator end, typename T::iterator to_insert, int level);
+
+        template<template<typename, typename> class T, typename U, typename V>
+        void pushBackPairs(T<U, std::allocator<U> > & container, V & vec_pairs);
+
+        template<typename T>
+        void sortPairs(T & pairs, int pair_size);
+        
     class ArgsError : public std::exception
     {
         public:
@@ -97,6 +125,204 @@ bool PmergeMe::isSorted(T container)
         }
     }
     return true;
+}
+
+template<typename T>
+void PmergeMe::printPairs(T & pairs)
+{
+    typename T::iterator it;
+    int                  i = 0;
+    
+    for (it = pairs.begin(); it != pairs.end(); it++)
+    {
+        std::cout << "pair " << i << " = ";
+        typename T::value_type::pair_type::iterator it2;
+        for (it2 = it->pair.begin(); it2 != it->pair.end(); it2++)
+            std::cout << *it2 << " ";
+        std::cout << "label = " << it->label << std::endl;
+        i++;
+    }
+}
+
+template<typename T>
+void PmergeMe::labelPairs(T & pairs, int pair_size)
+{
+    typename T::iterator                  it;
+    typename T::value_type *              prev;
+    std::ostringstream                    oss;
+    int                                   i = 0;
+    int                                   j = 1;
+    
+    for (it = pairs.begin(); it != pairs.end(); it++)
+    {
+        if (static_cast<int>(it->pair.size()) != pair_size)
+            break;
+        oss.str("");
+        oss.clear();
+        oss << j;
+        if (i % 2 == 0)
+        {
+            it->label = "b" + oss.str();
+            it->bind = prev;
+        }
+        else
+        {
+            it->label = "a" + oss.str();
+            j++;
+        }
+        i++;
+        prev = &(*it);
+    }
+}
+
+template<typename T>
+void PmergeMe::prepChains(T & pairs, T & main, T & pending)
+{
+    typename T::iterator it = pairs.begin();
+    
+    while (it != pairs.end())
+    {
+        if ((*it).label.size() == 0) 
+        {
+            it++;
+            continue;
+        }
+        else
+        {
+            if ((*it).label == "b1" || (*it).label[0] == 'a')
+                main.push_back(*it);
+            else if ((*it).label[0] == 'b')
+                pending.push_back(*it);
+        }
+        pairs.erase(it);
+        it = pairs.begin();
+    }
+}
+
+template<template<typename, typename> class T, typename U>
+typename T<U, std::allocator<U> >::iterator PmergeMe::findPairByLabel(T<U, std::allocator<U> > & pending, std::string c, int current_nb)
+{
+    typename T<U, std::allocator<U> >::iterator it;
+    std::ostringstream                          oss;
+    std::string                                 label;
+
+    oss << current_nb;
+    label = c + oss.str();
+    for (it = pending.begin(); it != pending.end(); it++)
+    {
+        if (it->label == label)
+            return it;
+    }
+    return pending.end();
+}
+
+template<typename T>
+void PmergeMe::insertMain(T & main, typename T::iterator begin, typename T::iterator end, typename T::iterator to_insert, int level)
+{
+    int size = std::distance(begin, end);
+    int middle = size / 2;
+    typename T::iterator insert_idx = begin;
+    typename T::iterator insert_idx_plus_one = begin;
+
+    std::advance(insert_idx, middle);
+    std::advance(insert_idx_plus_one, middle + 1);
+    if (to_insert->pair.back() > insert_idx->pair.back() && to_insert->pair.back() < insert_idx_plus_one->pair.back())
+    {
+        main.insert(insert_idx_plus_one, *to_insert);
+        return ;
+    }
+    if (to_insert->pair.back() < insert_idx->pair.back())
+        insertMain(main, main.begin(), insert_idx, to_insert, level + 1);
+    else
+        insertMain(main, insert_idx, end, to_insert, level + 1);
+}
+
+template<template<typename, typename> class T, typename U, typename V>
+void PmergeMe::pushBackPairs(T<U, std::allocator<U> > & container, V & vec_pairs)
+{
+    typename V::iterator                                 it;
+    typename T<U, std::allocator<U> >::iterator          it2;
+
+    for (it = vec_pairs.begin(); it != vec_pairs.end(); it++)
+    {
+        for (it2 = it->pair.begin(); it2 != it->pair.end(); it2++)
+            container.push_back((*it2));
+    }
+}
+
+template<typename T>
+void PmergeMe::sortPairs(T & pairs, int pair_size)
+{
+    typename T::iterator                                 it;
+    typename T::value_type::pair_type::iterator          it2;
+    typename T::value_type::pair_type::iterator          first_pair;
+    typename T::value_type::pair_type::iterator          second_pair;
+    int                                 middle;
+
+    middle = pair_size / 2 - 1;
+    for (it = pairs.begin(); it != pairs.end() && pair_size == (int)it->pair.size(); it++)
+    {
+        first_pair = it->pair.begin();
+        second_pair = it->pair.begin();
+        std::advance(second_pair, middle);
+        if (*second_pair > it->pair.back()) // second_pair == last element of first pair
+        {
+            if (static_cast<int>(it->pair.size()) != pair_size)
+                break;
+            std::advance(second_pair, 1); // now first element of second pair
+            std::swap_ranges(first_pair, second_pair, second_pair);
+        }
+    }
+}
+
+template<typename T>
+void PmergeMe::getJacobsthalSeq(T & container)
+{
+    container.push_back(0);
+    container.push_back(1);
+    container.push_back(1);
+    container.push_back(3);
+}
+
+template<template<typename, typename> class T, typename U, typename V>
+T<U, std::allocator<U> > PmergeMe::jacobsthalInsertion(T<V, std::allocator<V> >& vec_pairs)
+{
+    T<U, std::allocator<U> >                                jacobsthalSeq;
+    typename T<U, std::allocator<U> >::reverse_iterator     prev_nb_it;
+    T<U, std::allocator<U> >                                final_container;
+    T<V, std::allocator<V> >                                pending;
+    T<V, std::allocator<V> >                                main;
+
+    this->getJacobsthalSeq(jacobsthalSeq);
+    this->prepChains(vec_pairs, main, pending);
+    while (pending.size() != 0)
+    {
+        int current_jacob_nb = jacobsthalSeq.back();
+        prev_nb_it = jacobsthalSeq.rbegin();
+        std::advance(prev_nb_it, 1);
+        int prev_nb = *prev_nb_it;
+
+        for (int i = 0; i != current_jacob_nb - prev_nb && pending.size(); i++)
+        {
+            typename T<V, std::allocator<V> >::iterator it = findPairByLabel(pending, "b", current_jacob_nb - i);
+            typename T<V, std::allocator<V> >::iterator bound = findPairByLabel(main, "a", current_jacob_nb - i); // to fix ?
+            if (it == pending.end())
+                std::advance(it, -1);
+            if (bound == main.end()) // to opti
+                std::advance(bound, -1);
+            if (it->pair.back() < main.begin()->pair.back())
+                main.insert(main.begin(), *it);
+            else if (it->pair.back() > main.back().pair.back())
+                main.push_back(*it);
+            else
+                this->insertMain(main, main.begin(), bound, it, 0);
+            pending.erase(it);
+        }
+        jacobsthalSeq.push_back(current_jacob_nb + 2 * prev_nb);
+    }
+    pushBackPairs(final_container, main);
+    pushBackPairs(final_container, vec_pairs);
+    return final_container;
 }
 
 #endif
