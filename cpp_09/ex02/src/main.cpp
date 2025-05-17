@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:43:22 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/15 18:29:04 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/17 21:35:53 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int main (int argc, char **argv)
     try
     {
         to_sort.loadContainers(argv + 1);
+        std::cout << "Before : ";
+        to_sort.printContainer(to_sort.getVecContainer());
         to_sort.sortContainers();
-        to_sort.printContainers();
-        if (to_sort.isSorted(to_sort.getVecContainer()))
-            std::cout << "Its sorted baby!\n";
-        else
-            std::cout << "Its not sorted dumbass\n";
+        std::cout << "After : ";
+        to_sort.printContainer(to_sort.getVecContainer());
+        std::cout << "Time to process a range of " << to_sort.getVecContainer().size() << " elements with std::vector : " << to_sort.getVecTime() << " us\n";
+        std::cout << "Time to process a range of " << to_sort.getLstContainer().size() << " elements with std::list   : " << to_sort.getLstTime() << " us\n";
     }
     catch (std::exception &e)
     {

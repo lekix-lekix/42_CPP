@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:35:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/16 18:15:49 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:58:11 by lekix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <ctime>
 #include <sstream>
 #include <algorithm>
 #include <vector>
@@ -43,7 +44,9 @@ class PmergeMe
 {
     private:
         std::vector<int> _vec;
-        std::list<int> _lst;
+        std::list<int>   _lst;
+        double           time_vec;
+        double           time_lst;
 
     public:
         PmergeMe(void);
@@ -52,27 +55,15 @@ class PmergeMe
         PmergeMe const &operator=(PmergeMe const & rhs);
 
         void                                 loadContainers(char **args);
-        std::vector<int>                     getVecContainer(void);
+        std::vector<int> &                   getVecContainer(void);
+        std::list<int> &                     getLstContainer(void);
+        double                               getVecTime(void);
+        double                               getLstTime(void);
 
-        /********* std::vector *********/
-        void                                 recursiveVecSort(std::vector<int> & container, int pair_size);
-        // void                                 sortVecPairs(std::vector<t_vec_pair> & pairs, int pair_size);
         void                                 sortContainers(void);
-        void                                 printContainers(void);
-        std::vector<int>                     copyPairsIntoVecContainer(std::vector<t_vec_pair> & vec_pairs);
-        std::vector<t_vec_pair>              makeVecPairs(std::vector<int> & container, int pair_size);
-        std::vector<int>                     getJacobsthalSeqVec(void);
-        // std::vector<int>                     jacobsthalVecInsertion(std::vector<t_vec_pair> & vec_pairs);
-
-        /********** std::list **********/
         void                                 recursiveLstSort(std::list<int> & container, int pair_size);
-        std::list<t_lst_pair>                makeLstPairs(std::list<int> & container, int pair_size);
-        // void                                 sortLstPairs(std::list<t_lst_pair> & lst_pairs, int pair_size);
-        std::list<int>                       copyPairsIntoLstContainer(std::list<t_lst_pair> & lst_pairs);
-        // std::list<int>                       jacobsthalInsertion(std::list<t_lst_pair> & vec_pairs);
-        std::list<int>                       getJacobsthalSeqLst(void);
+        void                                 recursiveVecSort(std::vector<int> & container, int pair_size);
 
-        
         template<template<typename, typename> class T, typename U, typename V>
         T<U, std::allocator<U> > jacobsthalInsertion(T<V, std::allocator<V> >& vec_pairs);
         
@@ -83,8 +74,10 @@ class PmergeMe
         void printPairs(T & pairs);
 
         template<typename T>
-        void labelPairs(T & pairs, int pair_size);
+        void printContainer(T & container);
 
+        template<typename T>
+        void labelPairs(T & pairs, int pair_size);
 
         template<typename T>
         void getJacobsthalSeq(T & container);
@@ -101,6 +94,12 @@ class PmergeMe
         template<template<typename, typename> class T, typename U, typename V>
         void pushBackPairs(T<U, std::allocator<U> > & container, V & vec_pairs);
 
+        template<template<typename, typename> class T, typename U, typename V>
+        T<U, std::allocator<U> > copyPairsIntoContainer(T<V, std::allocator<V> > & pairs);
+
+        template<template<typename, typename> class T, typename U, typename V>
+        T<V, std::allocator<V> > makePairs(T<U, std::allocator<U> > & container, int pair_size);
+        
         template<typename T>
         void sortPairs(T & pairs, int pair_size);
         
@@ -115,14 +114,14 @@ template<typename T>
 bool PmergeMe::isSorted(T container)
 {
     typename T::iterator it;
+    typename T::iterator next = container.begin();
 
     for (it = container.begin(); it != container.end(); it++)
     {
-        if (it != container.end() - 1 && *it > *(it + 1))
-        {
-            std::cout << "problematic item = " << *it << "\n";
+        next = it;
+        std::advance(next, 1);
+        if (next != container.end() && *it > *next)
             return false;
-        }
     }
     return true;
 }
@@ -142,6 +141,22 @@ void PmergeMe::printPairs(T & pairs)
         std::cout << "label = " << it->label << std::endl;
         i++;
     }
+}
+
+template<typename T>
+void PmergeMe::printContainer(T & container)
+{
+    typename T::iterator it;
+    typename T::iterator last = container.end();
+
+    std::advance(last, -1);
+    for (it = container.begin(); it != container.end(); it++)
+    {
+        if (it != last)
+            std::cout << *it << " ";
+        else
+            std::cout << *it << "\n";
+    }    
 }
 
 template<typename T>
@@ -250,6 +265,21 @@ void PmergeMe::pushBackPairs(T<U, std::allocator<U> > & container, V & vec_pairs
     }
 }
 
+template<template<typename, typename> class T, typename U, typename V>
+T<U, std::allocator<U> > PmergeMe::copyPairsIntoContainer(T<V, std::allocator<V> > & pairs)
+{
+    T<U, std::allocator<U> >                    new_container;
+    typename T<V, std::allocator<V> >::iterator it;
+    typename T<U, std::allocator<U> >::iterator it2;
+
+    for (it = pairs.begin(); it != pairs.end(); it++)
+    {
+        for (it2 = it->pair.begin(); it2 != it->pair.end(); it2++)
+            new_container.push_back(*it2);
+    }
+    return new_container;
+}
+
 template<typename T>
 void PmergeMe::sortPairs(T & pairs, int pair_size)
 {
@@ -257,7 +287,7 @@ void PmergeMe::sortPairs(T & pairs, int pair_size)
     typename T::value_type::pair_type::iterator          it2;
     typename T::value_type::pair_type::iterator          first_pair;
     typename T::value_type::pair_type::iterator          second_pair;
-    int                                 middle;
+    int                                                  middle;
 
     middle = pair_size / 2 - 1;
     for (it = pairs.begin(); it != pairs.end() && pair_size == (int)it->pair.size(); it++)
@@ -285,14 +315,34 @@ void PmergeMe::getJacobsthalSeq(T & container)
 }
 
 template<template<typename, typename> class T, typename U, typename V>
+T<V, std::allocator<V> > PmergeMe::makePairs(T<U, std::allocator<U> > & container, int pair_size)
+{
+    T<V, std::allocator<V> >                    pairs;
+    typename T<U, std::allocator<U> >::iterator it = container.begin();
+
+    while (it != container.end())
+    {
+        typename T<V, std::allocator<V> >::value_type curr_pair;
+        for (int i = 0; i < pair_size && it != container.end(); i++)
+        {
+            curr_pair.pair.push_back(*it);
+            curr_pair.bind = NULL;
+            it++;
+        }
+        pairs.push_back(curr_pair);
+    }
+    return pairs;
+}
+
+template<template<typename, typename> class T, typename U, typename V>
 T<U, std::allocator<U> > PmergeMe::jacobsthalInsertion(T<V, std::allocator<V> >& vec_pairs)
 {
     T<U, std::allocator<U> >                                jacobsthalSeq;
-    typename T<U, std::allocator<U> >::reverse_iterator     prev_nb_it;
     T<U, std::allocator<U> >                                final_container;
     T<V, std::allocator<V> >                                pending;
     T<V, std::allocator<V> >                                main;
-
+    typename T<U, std::allocator<U> >::reverse_iterator     prev_nb_it;
+    
     this->getJacobsthalSeq(jacobsthalSeq);
     this->prepChains(vec_pairs, main, pending);
     while (pending.size() != 0)
@@ -305,10 +355,10 @@ T<U, std::allocator<U> > PmergeMe::jacobsthalInsertion(T<V, std::allocator<V> >&
         for (int i = 0; i != current_jacob_nb - prev_nb && pending.size(); i++)
         {
             typename T<V, std::allocator<V> >::iterator it = findPairByLabel(pending, "b", current_jacob_nb - i);
-            typename T<V, std::allocator<V> >::iterator bound = findPairByLabel(main, "a", current_jacob_nb - i); // to fix ?
+            typename T<V, std::allocator<V> >::iterator bound = findPairByLabel(main, "a", current_jacob_nb - i);
             if (it == pending.end())
                 std::advance(it, -1);
-            if (bound == main.end()) // to opti
+            if (bound == main.end())
                 std::advance(bound, -1);
             if (it->pair.back() < main.begin()->pair.back())
                 main.insert(main.begin(), *it);
