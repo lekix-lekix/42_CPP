@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 12:32:32 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/27 17:37:34 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:35:21 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ int main(int argc, char **argv)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what();
     }
-    
 }

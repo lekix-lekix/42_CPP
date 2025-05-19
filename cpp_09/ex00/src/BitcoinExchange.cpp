@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:14:34 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/27 17:45:47 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:13:19 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ BitcoinExchange::BitcoinExchange(void)
     }
     catch(const std::exception& e)
     {
+        std::cerr << e.what();
         throw e;
     }
 }
@@ -47,7 +48,7 @@ std::map<std::string, float>BitcoinExchange::openParseDataFile(std::string filen
     if (!datafile.is_open())
         throw FileError();
     while (std::getline(datafile, line, '\n'))
-    {   
+    {
         if (line.find_first_not_of(charset) != line.npos)
             continue;
         std::string date = line.substr(0, line.find(delim));
@@ -74,9 +75,9 @@ bool    BitcoinExchange::checkDateValues(std::string date)
         return (this->badInput(date.substr(0, '|')));
     month = date.substr(date.find('-') + 1, 2);
     day = date.substr(date.find_last_of('-') + 1, 2);
-    if (atoi(year.c_str()) <= 0 || atoi(month.c_str()) <= 0 || atoi(month.c_str()) > 31 
+    if (atoi(year.c_str()) < 2009 || atoi(month.c_str()) <= 0 || atoi(month.c_str()) > 12 
         || atoi(day.c_str()) <= 0 || atoi(day.c_str()) > 31)
-        return this->badInput(date);
+            return this->badInput(date);
     return true;
 }
 
@@ -112,7 +113,7 @@ bool    BitcoinExchange::checkFloatValue(std::string float_value)
     value = atof(float_value.c_str());
     if (value < 0)
         return std::cout << "Error: not a positive number.\n", false;
-    if (value > 1000)
+    if (value > std::numeric_limits<float>::max() || static_cast<int>(value) > std::numeric_limits<int>::max() || static_cast<int>(value) < 0)
         return std::cout << "Error: too large a number.\n", false;
     return true;
 }
@@ -149,9 +150,7 @@ void BitcoinExchange::printData(void)
     std::cout << std::fixed << std::showpoint;
     std::cout << std::setprecision(2);
     for (it = this->_db.begin(); it != this->_db.end(); it++)
-    {
         std::cout << it->first << " : " << it->second << "\n";
-    }
 }
 
 const char *BitcoinExchange::FileError::what(void) const throw()

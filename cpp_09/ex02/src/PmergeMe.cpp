@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:36:44 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/17 20:58:56 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/19 15:52:46 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 /************ ORTHODOX CANONICAL FORM ************/
 
-PmergeMe::PmergeMe(void) {}
+PmergeMe::PmergeMe(void) 
+{
+    this->time_vec = 0;
+    this->time_lst = 0;
+}
 
 PmergeMe::~PmergeMe(void) {}
 

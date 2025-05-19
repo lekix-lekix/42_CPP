@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lekix <lekix@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:10:58 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/04/26 20:04:09 by lekix            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:41:39 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <utility>
 #include <algorithm>
 #include <map>
@@ -36,9 +37,9 @@ class BitcoinExchange
         BitcoinExchange(BitcoinExchange const & other);
         BitcoinExchange const &operator=(BitcoinExchange const & rhs);
 
-        std::map<std::string, float>openParseDataFile(std::string filename, char delim, std::string charset);
-        void openParseInputFile(std::string filename);
-        void printData(void);
+        std::map<std::string, float>    openParseDataFile(std::string filename, char delim, std::string charset);
+        void                            openParseInputFile(std::string filename);
+        void                            printData(void);
 
     class FileError : public std::exception
     {
