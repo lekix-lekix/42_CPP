@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:35:31 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/19 15:52:02 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:50:54 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 #include <sstream>
 #include <algorithm>

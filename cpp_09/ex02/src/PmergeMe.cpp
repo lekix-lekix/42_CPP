@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:36:44 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/19 15:52:46 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:25:04 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void PmergeMe::loadContainers(char **args)
         if (nb_str.length() == 0 || nb_str.find_first_not_of("0123456789") != nb_str.npos)
             throw ArgsError();
         nb_int = atoi(nb_str.c_str());
-        if (nb_int <= 0)
+        if (nb_int <= 0 || std::find(this->_lst.begin(), this->_lst.end(), nb_int) != this->_lst.end())
             throw ArgsError();
         this->_lst.push_back(nb_int);
         this->_vec.push_back(nb_int);

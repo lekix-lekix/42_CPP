@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:43:22 by lekix             #+#    #+#             */
-/*   Updated: 2025/05/19 15:51:32 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:51:14 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main (int argc, char **argv)
             to_sort.sortContainers();
         std::cout << "After : ";
         to_sort.printContainer(to_sort.getVecContainer());
+        std::cout << std::fixed << std::setprecision(0);
         std::cout << "Time to process a range of " << to_sort.getVecContainer().size() << " elements with std::vector : " << to_sort.getVecTime() << " us\n";
         std::cout << "Time to process a range of " << to_sort.getLstContainer().size() << " elements with std::list   : " << to_sort.getLstTime() << " us\n";
     }

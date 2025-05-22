@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:10:58 by kipouliq          #+#    #+#             */
-/*   Updated: 2025/05/19 14:41:39 by kipouliq         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:54:21 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class BitcoinExchange
         std::map<std::string, float>                _file;
         std::map<std::string, float>::iterator      findCheckDate(std::string input);
         bool                                        badInput(std::string input);
+        bool                                        isDateValid(int year, int month, int day);
         bool                                        checkDateValues(std::string date);
         bool                                        checkFloatValue(std::string float_value);
 
@@ -39,7 +40,7 @@ class BitcoinExchange
 
         std::map<std::string, float>    openParseDataFile(std::string filename, char delim, std::string charset);
         void                            openParseInputFile(std::string filename);
-        void                            printData(void);
+        // void                            printData(void);
 
     class FileError : public std::exception
     {
